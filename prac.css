@@ -1,0 +1,149 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Fjalla One', sans-serif;
+    color: black;
+    font-size: 1.5rem;
+    background-color: rgb(255, 255, 255);
+}
+.enlarge {
+    font-size: 3rem;
+}
+.intro {
+    border-radius: 10px;
+    width: 100%;
+    height: min(500px, max(300px, 60vh));
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to right, magenta, blue);
+    justify-content: space-around;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20vh;
+}
+.about {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20vh;
+}
+.hobbies, .education, .upto-speed, .projects {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    margin-bottom: 10vh;
+}
+.projects-title, .upto-speed-title, .hobbies-title, .education-title {
+    font-size: 6vw;
+}
+.hobbies-content, .education-content, .upto-speed-content, .projects-content {
+    transform: scaleY(0);
+    transform-origin: top;
+    position: absolute;
+    background-image: linear-gradient(to right, rgba(255, 0, 255, 0.5), rgba(0, 0, 255,  0.5));
+    width: calc(65vw - 44px);
+    right: 20px;
+    box-shadow: 0 8px 16px 1px rgba(0, 0, 0, 0.5);
+    padding: 12px 16px;
+    transition: all 300ms cubic-bezier(.18,.89,.32,1.28);
+    cursor: text;
+}
+.hobbies:hover .hobbies-content {
+    transform: scaleY(1);
+}
+.upto-speed:hover .upto-speed-content {
+    transform: scaleY(1);
+}
+.education:hover .education-content {
+    transform: scaleY(1);
+}
+.projects:hover .projects-content {
+    transform: scaleY(1);
+}
+.projImg {
+    border-radius: 5px;
+    transition: all 500ms cubic-bezier(.18,.89,.32,1.28);
+}
+.projImg:hover {
+    box-shadow: 0 0 5px 1px black;
+    border-radius: 0;
+    transform: translate(0, -160px) scale(7);
+    cursor: default;
+}
+#cSTL, #skinMart, #organizer {
+    color: white;
+}
+#cSTL:hover, #skinMart:hover, #organizer:hover {
+    cursor: pointer;
+}
+#cSTL-content, #skinMart-content, #organizer-content {
+    position: absolute;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding: 15px 50px;
+    margin-left: 20%;
+    right: 0;
+    top: 0;
+    transition: all 300ms cubic-bezier(.18,.89,.32,1.28);;
+}
+.img-container {
+    position: absolute;
+    display: inline-block;
+}
+.gradient-text {
+    background-image: linear-gradient(to right, magenta, blue);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.myImg {
+    box-shadow: 0 0 50px 1px black;
+    border-radius: 10px;
+    height: min(300px, max(200px, 40vh));
+    transition: transform 500ms;
+}
+.myImg:hover {
+    transform: scale(1.1);
+}
+.name {
+    transition: color 500ms;
+}
+.name:hover {
+    color: black;
+}
+.mordernForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mordernForm > * {
+    width: 50%;
+}
+.submit {
+    background-image: linear-gradient(to right, magenta, blue);
+    padding: 10px;
+    font-weight: 900;
+    font-size: 1rem;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+label {
+    margin-top: 5vh;
+}
+input {
+    padding: 10px;
+    font-weight: 900;
+    font-size: 1.2rem;
+    border-color: #333;
+    border-radius: 10px;
+}
+a {
+    font-style: italic;
+    color: #333;
+}
