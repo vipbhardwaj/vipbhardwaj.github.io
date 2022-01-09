@@ -11,6 +11,7 @@ body {
     font-size: 3rem;
 }
 .intro {
+    margin-top: 20vh;
     border-radius: 10px;
     width: 100%;
     height: min(500px, max(300px, 60vh));
