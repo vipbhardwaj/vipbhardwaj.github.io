@@ -8,49 +8,114 @@
         <link rel="stylesheet" type="text/css" href="prac.css">
     </head>
     <script>
+        var cSTLFlag = 0, skinMartFlag = 0, organizerFlag = 0;
+        setTimeout(function(){
+            document.getElementsByClassName("beforeLoad")[0].remove();
+        }, 5000);
         function cSTL() {
-            document.getElementById('cSTL-content').style.transform = 'scaleY(1)';
+            skinMartFlag = 0;
+            organizerFlag = 0;
             document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
             document.getElementById('organizer-content').style.transform = 'scaleY(0)';
-            document.getElementById('cSTL').style.color = 'black';
-            document.getElementById('skinMart').style.color = 'white';
-            document.getElementById('organizer').style.color = 'white';
-            document.getElementsByClassName('projects-content')[0].style.height = '25vh';
+            document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
+            document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
+            if(!cSTLFlag) {
+                document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(135deg)';
+                document.getElementById('cSTL-content').style.transform = 'scaleY(1)';
+                cSTLFlag = 1;
+                document.getElementsByClassName('projects-content')[0].style.height = '25vh';
+            } else {
+                document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
+                document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
+                cSTLFlag = 0;
+                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
+            }
         }
         function skinMart() {
+            cSTLFlag = 0;
+            organizerFlag = 0;
             document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
-            document.getElementById('skinMart-content').style.transform = 'scaleY(1)';
             document.getElementById('organizer-content').style.transform = 'scaleY(0)';
-            document.getElementById('cSTL').style.color = 'white';
-            document.getElementById('skinMart').style.color = 'black';
-            document.getElementById('organizer').style.color = 'white';
-            document.getElementsByClassName('projects-content')[0].style.height = '37vh';
+            document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
+            document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
+            if(!skinMartFlag) {
+                document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(135deg)';
+                document.getElementById('skinMart-content').style.transform = 'scaleY(1)';
+                skinMartFlag = 1;
+                document.getElementsByClassName('projects-content')[0].style.height = '35vh';
+            } else {
+                document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
+                document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
+                skinMartFlag = 0;
+                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
+            }
         }
         function organizer() {
+            cSTLFlag = 0;
+            skinMartFlag = 0;
             document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
             document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
-            document.getElementById('organizer-content').style.transform = 'scaleY(1)';
-            document.getElementById('cSTL').style.color = 'white';
-            document.getElementById('skinMart').style.color = 'white';
-            document.getElementById('organizer').style.color = 'black';
-            document.getElementsByClassName('projects-content')[0].style.height = '21vh';
+            document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
+            document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
+            if(!organizerFlag) {
+                document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(135deg)';
+                document.getElementById('organizer-content').style.transform = 'scaleY(1)';
+                organizerFlag = 1;
+                document.getElementsByClassName('projects-content')[0].style.height = '23vh';
+            } else {
+                document.getElementById('organizer-content').style.transform = 'scaleY(0)';
+                document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
+                organizerFlag = 0;
+                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
+            }
         }
     </script>
     <body>
-        <div class="intro">
-            <h3 class="introText">Hi. I am <u><span class="enlarge name">Vipul Bhardwaj</span></u>.<br/><br/>A habitual <span class="enlarge">Front-End Developer</span>,<br/><span class="enlarge">Competitve Coder</span><br/>and an <span class="enlarge">Eager Learner</span>.</h3>
-            <img class="myImg" src="resume.png" alt="Vipul Bhardwaj"/>
+        <div class='beforeLoad'>
+            <div class="dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
         </div>
-        <div class="about">
-            <div class="projects">
-                <span class="projects-title gradient-text">Projects</span>
-                <div class="projects-content">
-                    <ul>
-                        <li id="cSTL" onclick="cSTL()">C-STL</li>
-                        <div id="cSTL-content">
-                            <p>This is supposed to be a Standard Templpate Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
+        <div class="afterLoad">
+            <div class="intro">
+                <h3 class="introText">Hi. I am <u><span class="enlarge name">Vipul Bhardwaj</span></u>.<br/><br/>A habitual <span class="enlarge">Front-End Developer</span>,<br/><span class="enlarge">Competitve Coder</span><br/>and an <span class="enlarge">Eager Learner</span>.</h3>
+                <img class="myImg" src="myImg3-removebg.png" alt="Vipul Bhardwaj"/>
+            </div>
+            <div class="wrapper"><div class="about">
+                <div class="projects">
+                    <span class="projects-title gradient-text">Projects</span>
+                    <div class="projects-content">
+                        <div class="title">
+                            <img class="cSTL-dropper" src="./plus.png"/>
+                            <div class="cSTL" onclick="cSTL()">C-STL</div>
                         </div>
-                        <li id="skinMart" onclick="skinMart()">Skin Mart</li>
+                        <div id="cSTL-content">
+                            <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
+                        </div>
+                        <div class="title">
+                            <img class="organizer-dropper" src="./plus.png"/>
+                            <div class="organizer" onclick="organizer()">Organiz-er</div>
+                        </div>
+                        <div id="organizer-content">
+                            <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
+                        </div>
+                        <div class="title">
+                            <img class="skinMart-dropper" src="./plus.png"/>
+                            <div class="skinMart" onclick="skinMart()">Skin Mart</div>
+                        </div>
                         <div id="skinMart-content">
                             <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a></p>
                             <div class="img-container">
@@ -60,48 +125,57 @@
                                 <img class="projImg" src="skinmart4.png" alt="Game Info" width="100"/>
                             </div>
                         </div>
-                        <li id="organizer" onclick="organizer()">Organiz-er</li>
-                        <div id="organizer-content">
-                            <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
-                        </div>
-                    </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="upto-speed">
-                <span class="upto-speed-title gradient-text">Upto Speed</span>
-                <div class="upto-speed-content">
-                    <p>I was born in the August of 2000, and bought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bangaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
+                <div class="upto-speed">
+                    <span class="upto-speed-title gradient-text">Upto Speed</span>
+                    <div class="upto-speed-content">
+                        <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="hobbies">
-                <span class="hobbies-title gradient-text">Hobbies</span>
-                <div class="hobbies-content">
-                    <p>I like gaming, some of my favourite games are, CSGO (int the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                <div class="hobbies">
+                    <span class="hobbies-title gradient-text">Hobbies</span>
+                    <div class="hobbies-content">
+                        <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="education">
-                <span class="education-title gradient-text">Education</span>
-                <div class="education-content">
-                    <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                <div class="education">
+                    <span class="education-title gradient-text">Education</span>
+                    <div class="education-content">
+                        <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                    </div>
                 </div>
-            </div>
+            </div></div>
+            <form class="mordernForm" action="">
+                <label for="the-name">How should I recognize you?</label>
+                <input placeholder="Just put down the name" type="text" id="the-name" class="gradient-text">
+                <label for="curiosity">Why so curious?</label>
+                <input placeholder="Example : Nice Website / Crap Website" type="text" id="curiosity" class="gradient-text" list="autoComp">
+                <datalist id="autoComp">
+                    <option value="Want to know more about You."></option>
+                    <option value="Nice Website.."></option>
+                    <option value="Lets be friends! :)"></option>
+                    <option value="Want to learn Web Dev from you."></option>
+                    <option value="Want to buy you a coffee..!"></option>
+                    <option value="Let's catch up! We used to hang out."></option>
+                </datalist>
+                <label for="meter">On a scale of 1-100, how much do you like the portfolio</label>
+                <input type="range" id="meter" min="0" max="100">
+                <input type="image" class="submit" src="./dm.png"/>
+            </form>
+            <div class="wrapper"><div class="get-in-touch">
+                <img class="get-in-touch-img" src="./social-media.png" alt="Social Media"/>
+                <p class="get-in-touch-message">Get in Touch</p>
+                <div class="links">
+                    <div class="links-container"><img class="link-img" src="./instagram.png" alt="Instagram"/> <a class="gradient-text" href="https://www.instagram.com/__vipul23__/">https://www.instagram.com/__vipul23__/</a></div>
+                    <div class="links-container"><img class="link-img" src="./whatsapp.png" alt="Whatsapp"/><p style="display: inline" class="gradient-text"> +917986237204</p></div>
+                    <div class="links-container"><img class="link-img" src="./linkedin.png" alt="LinkedIn"/> <a class="gradient-text" href="https://www.linkedin.com/in/vipul-bhardwaj-051b82184/">https://www.linkedin.com/in/vipul-bhardwaj-051b82184/</a></div>
+                    <div class="links-container"><img class="link-img" src="./email.png" alt="Email"/> <p style="display: inline" class="gradient-text">vipulbhardwaj1011@gmail.com</p></div>
+                    <div class="links-container"><img class="link-img" src="./github.png" alt="GitHub"/> <a class="gradient-text" href="https://github.com/vipbhardwaj">https://github.com/vipbhardwaj</a></div>
+                </div>
+            </div></div>
+            <hr/>
+            <div class="credits">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </div>
-        <form class="mordernForm" action="">
-            <label for="the-name">How should I recognize you?</label>
-            <input placeholder="Just put down the name" type="text" id="the-name" class="gradient-text">
-            <label for="curiosity">Why so curious?</label>
-            <input placeholder="Example : Nice Website / Crap Website" type="text" id="curiosity" class="gradient-text" list="autoComp">
-            <datalist id="autoComp">
-                <option value="Want to know more about You."></option>
-                <option value="Nice Website.."></option>
-                <option value="Lets be friends! :)"></option>
-                <option value="Want to learn Web Dev from you."></option>
-                <option value="Want to buy you a coffee..!"></option>
-                <option value="Let's catch up! We used to hang out."></option>
-            </datalist>
-            <label for="meter">On a scale of 1-100, how much do you like the portfolio</label>
-            <input type="range" id="meter" min="0" max="100">
-            <input type="submit" class="submit" value="Submit"/>
-        </form>
     </body>
 </html>
