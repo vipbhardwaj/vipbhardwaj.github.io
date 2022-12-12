@@ -5,7 +5,7 @@ body {
     font-family: 'Fjalla One', sans-serif;
     color: black;
     font-size: 1.5rem;
-    background-color: rgb(255, 255, 255);
+    background: #1d1d1d;
 }
 .enlarge {
     font-size: 3rem;
@@ -18,16 +18,16 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    background-image: linear-gradient(to right, magenta, blue);
+    background-image: linear-gradient(to right, rgb(166, 255, 0), rgb(0, 255, 128));
     justify-content: space-around;
     font-size: 1.2rem;
-    color: white;
+    color: black;
     margin-bottom: 20vh;
 }
 .about {
     padding: 10px;
     border-radius: 10px;
-    background-color: white;
+    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,7 +36,7 @@ body {
     padding: 5px;
     border-radius: 10px;
     position: relative;
-    background: linear-gradient(to right, magenta, blue);
+    background: linear-gradient(to right, rgb(166, 255, 0), rgb(0, 255, 128));
     margin-bottom: 20vh;
 }
 .myImg {
@@ -60,13 +60,18 @@ body {
     transform: scaleY(0);
     transform-origin: top;
     position: absolute;
-    background-image: linear-gradient(to right, rgba(255, 0, 255, 0.5), rgba(0, 0, 255,  0.5));
+    background-image: linear-gradient(to right, rgba(166, 255, 0, 0.5), rgba(0, 255, 128, 0.5));
     width: calc(65vw - 44px);
     right: 20px;
     box-shadow: 0 8px 16px 1px rgba(0, 0, 0, 0.5);
     padding: 12px 16px;
     transition: all 300ms cubic-bezier(.18,.89,.32,1.28);
     cursor: text;
+}
+.hobbies-content > hr, .education-content > hr, .upto-speed-content > hr, .projects-content > hr {
+    height: 2px !important;
+    margin-top: 0;
+    color: #1d1d1d;
 }
 .hobbies:hover .hobbies-content {
     transform: scaleY(1);
@@ -100,7 +105,7 @@ body {
 .cSTL, .skinMart, .organizer {
     display: inline-block;
     padding: 5px;
-    color: white;
+    color: black;
     border-radius: 10px;
     transition: all 500ms;
 }
@@ -123,16 +128,13 @@ body {
     display: inline-block;
 }
 .gradient-text {
-    background-image: linear-gradient(to right, magenta, blue);
+    background-image: linear-gradient(to right, rgb(166, 255, 0), rgb(0, 255, 128));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .name {
     transition: color 500ms;
-}
-.name:hover {
-    color: black;
 }
 .mordernForm {
     display: flex;
@@ -147,31 +149,23 @@ body {
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 10vh;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 50px;
-    transition: all 1000ms;
-    background-image: linear-gradient(to right, rgba(255, 0, 255, 0.5), rgba(0, 0, 255, 0.5));
+    transition: box-shadow 300ms;
+    background-image: linear-gradient(to right, rgba(166, 255, 0, 0.5), rgba(0, 255, 128, 0.5));
 }
 .submit:hover {
     cursor: pointer;
     box-shadow: 0 0 30px 1px black;
-    transform: rotate(360deg);
 }
 .get-in-touch {
-    background: white;
+    background: black;
     padding: 50px;
     border-radius: 10px;
 }
 .get-in-touch-message {
     display: inline;
     font-size: 10rem;
-    transition: all 700ms;
-}
-.get-in-touch-message:hover {
-    background-image: linear-gradient(to right, magenta, blue);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 .links {
     display: flex;
@@ -187,18 +181,22 @@ body {
     margin-right: 10px;
 }
 label {
+    color: white;
     margin-top: 5vh;
 }
 input {
     padding: 10px;
     font-weight: 900;
     font-size: 1.2rem;
-    border-color: #333;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: rgb(199, 199, 199);
     border-radius: 10px;
 }
 a {
     font-style: italic;
-    color: rgb(255, 255, 255);
+    color: black;
     transition: all 500ms;
 }
 a:hover {
@@ -207,7 +205,7 @@ a:hover {
 }
 .credits {
     padding: 5vh;
-    background-image: linear-gradient(to right, rgba(255, 0, 255, 0.5), rgba(0, 0, 255, 0.5));
+    background-image: linear-gradient(to right, rgba(166, 255, 0, 0.5), rgba(0, 255, 128, 0.5));
     border-radius: 10px;
 }
 .get-in-touch-img {
@@ -239,9 +237,9 @@ a:hover {
     }
 }
 .afterLoad {
+    display: none;
     opacity: 0;
     animation: fadeInAnimation 2000ms;
-    animation-delay: 5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
@@ -270,10 +268,6 @@ a:hover {
     } 100% {
         opacity: 0;
     }
-}
-
-body {
-	background: #ffffff;
 }
 
 .dots {
