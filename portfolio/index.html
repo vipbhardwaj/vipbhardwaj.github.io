@@ -21,7 +21,7 @@
         //         alert("Email sent successfully")
         //     });
         // }
-        var cSTLFlag = 0, skinMartFlag = 0, organizerFlag = 0, projects = 0, uptospeed = 0, hobbies = 0, education = 0;
+        var cSTLFlag = 0, skinMartFlag = 0, organizerFlag = 0;
         window.setTimeout(function() {
             document.getElementsByClassName("beforeLoad")[0].remove();
             document.getElementsByClassName("afterLoad")[0].style.display = 'block';
@@ -29,40 +29,6 @@
             // document.getElementsByClassName("afterLoad")[0].style.justifyContent = 'space-between';
             // console.log("added AFTER");
         }, 5000);
-        function showContent(event) {
-            var content = document.getElementsByClassName('content')[0];
-            var projectContent = document.getElementsByClassName('projects-content')[0];
-            var uptoSpeedContent = document.getElementsByClassName('upto-speed-content')[0];
-            var hobbiestContent = document.getElementsByClassName('hobbies-content')[0];
-            var educationContent = document.getElementsByClassName('education-content')[0]
-            
-            if(event.target.classList[0] === 'projects-title') {
-                if(content.firstChild) {
-                    content.innerHTML = ''
-                }
-                content.appendChild(projectContent);
-                projectContent.style.display = 'block';
-            } else if(event.target.classList[0] === 'upto-speed-title') {
-                if(content.firstChild) {
-                    content.innerHTML = ''
-                }
-                content.appendChild(uptoSpeedContent);
-                uptoSpeedContent.style.display = 'block';
-            } else if(event.target.classList[0] === 'hobbies-title') {
-                if(content.firstChild) {
-                    content.innerHTML = ''
-                }
-                content.appendChild(hobbiestContent);
-                hobbiestContent.style.display = 'block';
-            } else if(event.target.classList[0] === 'education-title') {
-                if(content.firstChild) {
-                    content.innerHTML = ''
-                }
-                content.appendChild(educationContent);
-                educationContent.style.display = 'block';
-            }
-            
-        }
         function cSTL() {
             skinMartFlag = 0;
             organizerFlag = 0;
@@ -156,68 +122,59 @@
                     <img class="myImg" src="myImg3-removebg.png" alt="Vipul Bhardwaj"/>
                 </div>
                 <div class="wrapper"><div class="about">
-                    <div class="about-titles">
-                        <div class="projects">
-                            <button class="projects-title gradient-text" onclick="showContent(event)">Projects</button>
-                            <div class="projects-content">
-                                <span style="font-size: larger;">Projects</span>
-                                <hr/>
-                                <div class="title">
-                                    <img class="cSTL-dropper" src="./plus.png"/>
-                                    <div class="cSTL" onclick="cSTL()">C-STL</div>
-                                </div>
-                                <div id="cSTL-content">
-                                    <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
-                                </div>
-                                <div class="title">
-                                    <img class="organizer-dropper" src="./plus.png"/>
-                                    <div class="organizer" onclick="organizer()">Organiz-er</div>
-                                </div>
-                                <div id="organizer-content">
-                                    <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
-                                </div>
-                                <div class="title">
-                                    <img class="skinMart-dropper" src="./plus.png"/>
-                                    <div class="skinMart" onclick="skinMart()">Skin Mart</div>
-                                </div>
-                                <div id="skinMart-content">
-                                    <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a></p>
-                                    <div class="img-container">
-                                        <img class="projImg" src="skinmart1.png" alt="Landing Page" width="100"/>
-                                        <img class="projImg" src="skinmart2.png" alt="Inventory" width="100"/>
-                                        <img class="projImg" src="skinmart3.png" alt="Info" width="100"/>
-                                        <img class="projImg" src="skinmart4.png" alt="Game Info" width="100"/>
-                                    </div>
-                                </div>
+                    <div class="projects">
+                        <span class="projects-title gradient-text">Projects</span>
+                        <div class="projects-content">
+                            <hr/>
+                            <div class="title">
+                                <img class="cSTL-dropper" src="./plus.png"/>
+                                <div class="cSTL" onclick="cSTL()">C-STL</div>
                             </div>
-                        </div>
-                        <div class="upto-speed">
-                            <button class="upto-speed-title gradient-text" onclick="showContent(event)">Up To Speed</button>
-                            <div class="upto-speed-content">
-                                <span style="font-size: larger;">Up To Speed</span>
-                                <hr/>
-                                <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
+                            <div id="cSTL-content">
+                                <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
                             </div>
-                        </div>
-                        <div class="hobbies">
-                            <button class="hobbies-title gradient-text" onclick="showContent(event)">Hobbies</button>
-                            <div class="hobbies-content">
-                                <span style="font-size: larger;">Hobbies</span>
-                                <hr/>
-                                <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                            <div class="title">
+                                <img class="organizer-dropper" src="./plus.png"/>
+                                <div class="organizer" onclick="organizer()">Organiz-er</div>
                             </div>
-                        </div>
-                        <div class="education">
-                            <button class="education-title gradient-text" onclick="showContent(event)">Education</button>
-                            <div class="education-content">
-                                <span style="font-size: larger;">Education</span>
-                                <hr/>
-                                <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                            <div id="organizer-content">
+                                <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
+                            </div>
+                            <div class="title">
+                                <img class="skinMart-dropper" src="./plus.png"/>
+                                <div class="skinMart" onclick="skinMart()">Skin Mart</div>
+                            </div>
+                            <div id="skinMart-content">
+                                <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a></p>
+                                <div class="img-container">
+                                    <img class="projImg" src="skinmart1.png" alt="Landing Page" width="100"/>
+                                    <img class="projImg" src="skinmart2.png" alt="Inventory" width="100"/>
+                                    <img class="projImg" src="skinmart3.png" alt="Info" width="100"/>
+                                    <img class="projImg" src="skinmart4.png" alt="Game Info" width="100"/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="about-content">
-                        <div class="content"><span style="font-size: larger;">Select from the list :)</span></div>
+                    <div class="upto-speed">
+                        <span class="upto-speed-title gradient-text">Upto Speed</span>
+                        <div class="upto-speed-content">
+                            <hr/>
+                            <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
+                        </div>
+                    </div>
+                    <div class="hobbies">
+                        <span class="hobbies-title gradient-text">Hobbies</span>
+                        <div class="hobbies-content">
+                            <hr/>
+                            <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                        </div>
+                    </div>
+                    <div class="education">
+                        <span class="education-title gradient-text">Education</span>
+                        <div class="education-content">
+                            <hr/>
+                            <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                        </div>
                     </div>
                 </div></div>
                 <form class="mordernForm" method="post" name="Form">
