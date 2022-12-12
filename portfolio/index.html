@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet"> 
+        <title>Vipul Bhardwaj</title>
+        <link rel="stylesheet" type="text/css" href="prac.css">
+    </head>
+    <script>
+        // function send() {
+        //     Email.send({
+        //         Host: "smtp.gmail.com",
+        //         Username: sender,
+        //         Password:password,
+        //         To: receiver,
+        //         From: sender,
+        //         Subject: "Check Email Sending",
+        //         Body: content,
+        //     }).then(function (message) {
+        //         alert("Email sent successfully")
+        //     });
+        // }
+        var cSTLFlag = 0, skinMartFlag = 0, organizerFlag = 0, projects = 0, uptospeed = 0, hobbies = 0, education = 0;
+        window.setTimeout(function() {
+            document.getElementsByClassName("beforeLoad")[0].remove();
+            document.getElementsByClassName("afterLoad")[0].style.display = 'block';
+            // document.getElementsByClassName("afterLoad")[0].style.display = 'flex';
+            // document.getElementsByClassName("afterLoad")[0].style.justifyContent = 'space-between';
+            // console.log("added AFTER");
+        }, 5000);
+        function showContent(event) {
+            var content = document.getElementsByClassName('content')[0];
+            var projectContent = document.getElementsByClassName('projects-content')[0];
+            var uptoSpeedContent = document.getElementsByClassName('upto-speed-content')[0];
+            var hobbiestContent = document.getElementsByClassName('hobbies-content')[0];
+            var educationContent = document.getElementsByClassName('education-content')[0]
+            
+            if(event.target.classList[0] === 'projects-title') {
+                if(content.firstChild) {
+                    content.innerHTML = ''
+                }
+                content.appendChild(projectContent);
+                projectContent.style.display = 'block';
+            } else if(event.target.classList[0] === 'upto-speed-title') {
+                if(content.firstChild) {
+                    content.innerHTML = ''
+                }
+                content.appendChild(uptoSpeedContent);
+                uptoSpeedContent.style.display = 'block';
+            } else if(event.target.classList[0] === 'hobbies-title') {
+                if(content.firstChild) {
+                    content.innerHTML = ''
+                }
+                content.appendChild(hobbiestContent);
+                hobbiestContent.style.display = 'block';
+            } else if(event.target.classList[0] === 'education-title') {
+                if(content.firstChild) {
+                    content.innerHTML = ''
+                }
+                content.appendChild(educationContent);
+                educationContent.style.display = 'block';
+            }
+            
+        }
+        function cSTL() {
+            skinMartFlag = 0;
+            organizerFlag = 0;
+            document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
+            document.getElementById('organizer-content').style.transform = 'scaleY(0)';
+            document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
+            document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
+            if(!cSTLFlag) {
+                document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(135deg)';
+                document.getElementById('cSTL-content').style.transform = 'scaleY(1)';
+                cSTLFlag = 1;
+                document.getElementsByClassName('projects-content')[0].style.height = '25vh';
+            } else {
+                document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
+                document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
+                cSTLFlag = 0;
+                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
+            }
+        }
+        function skinMart() {
+            cSTLFlag = 0;
+            organizerFlag = 0;
+            document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
+            document.getElementById('organizer-content').style.transform = 'scaleY(0)';
+            document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
+            document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
+            if(!skinMartFlag) {
+                document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(135deg)';
+                document.getElementById('skinMart-content').style.transform = 'scaleY(1)';
+                skinMartFlag = 1;
+                document.getElementsByClassName('projects-content')[0].style.height = '35vh';
+            } else {
+                document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
+                document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
+                skinMartFlag = 0;
+                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
+            }
+        }
+        function organizer() {
+            cSTLFlag = 0;
+            skinMartFlag = 0;
+            document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
+            document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
+            document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
+            document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
+            if(!organizerFlag) {
+                document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(135deg)';
+                document.getElementById('organizer-content').style.transform = 'scaleY(1)';
+                organizerFlag = 1;
+                document.getElementsByClassName('projects-content')[0].style.height = '23vh';
+            } else {
+                document.getElementById('organizer-content').style.transform = 'scaleY(0)';
+                document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
+                organizerFlag = 0;
+                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
+            }
+        }
+    </script>
+    <body>
+        <div class='beforeLoad'>
+            <div class="dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+        <div class="afterLoad">
+            <!-- <div class="horizontalWrapper">
+                <div class="wrapper"><div class="nav-inner"><div class="nav">
+                    <div class="gradient-text">Me</div>
+                    <div class="gradient-text">Me</div>
+                    <div class="gradient-text">Me</div>
+                    <div class="gradient-text">Me</div>
+                    <div class="gradient-text">Me</div>
+                </div></div></div>
+            </div> -->
+            <!-- <div class="horizontalWrapper"> -->
+                <div class="intro">
+                    <h3 class="introText">Hi. I am <u><span class="enlarge name">Vipul Bhardwaj</span></u>.<br/><br/>A habitual <span class="enlarge">Front-End Developer</span>,<br/><span class="enlarge">Competitve Coder</span><br/>and an <span class="enlarge">Eager Learner</span>.</h3>
+                    <img class="myImg" src="myImg3-removebg.png" alt="Vipul Bhardwaj"/>
+                </div>
+                <div class="wrapper"><div class="about">
+                    <div class="about-titles">
+                        <div class="projects">
+                            <button class="projects-title gradient-text" onclick="showContent(event)">Projects</button>
+                            <div class="projects-content">
+                                <span style="font-size: larger;">Projects</span>
+                                <hr/>
+                                <div class="title">
+                                    <img class="cSTL-dropper" src="./plus.png"/>
+                                    <div class="cSTL" onclick="cSTL()">C-STL</div>
+                                </div>
+                                <div id="cSTL-content">
+                                    <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
+                                </div>
+                                <div class="title">
+                                    <img class="organizer-dropper" src="./plus.png"/>
+                                    <div class="organizer" onclick="organizer()">Organiz-er</div>
+                                </div>
+                                <div id="organizer-content">
+                                    <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
+                                </div>
+                                <div class="title">
+                                    <img class="skinMart-dropper" src="./plus.png"/>
+                                    <div class="skinMart" onclick="skinMart()">Skin Mart</div>
+                                </div>
+                                <div id="skinMart-content">
+                                    <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a></p>
+                                    <div class="img-container">
+                                        <img class="projImg" src="skinmart1.png" alt="Landing Page" width="100"/>
+                                        <img class="projImg" src="skinmart2.png" alt="Inventory" width="100"/>
+                                        <img class="projImg" src="skinmart3.png" alt="Info" width="100"/>
+                                        <img class="projImg" src="skinmart4.png" alt="Game Info" width="100"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upto-speed">
+                            <button class="upto-speed-title gradient-text" onclick="showContent(event)">Up To Speed</button>
+                            <div class="upto-speed-content">
+                                <span style="font-size: larger;">Up To Speed</span>
+                                <hr/>
+                                <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
+                            </div>
+                        </div>
+                        <div class="hobbies">
+                            <button class="hobbies-title gradient-text" onclick="showContent(event)">Hobbies</button>
+                            <div class="hobbies-content">
+                                <span style="font-size: larger;">Hobbies</span>
+                                <hr/>
+                                <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                            </div>
+                        </div>
+                        <div class="education">
+                            <button class="education-title gradient-text" onclick="showContent(event)">Education</button>
+                            <div class="education-content">
+                                <span style="font-size: larger;">Education</span>
+                                <hr/>
+                                <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-content">
+                        <div class="content"><span style="font-size: larger;">Select from the list :)</span></div>
+                    </div>
+                </div></div>
+                <form class="mordernForm" method="post" name="Form">
+                    <label for="the-name">How should I recognize you?</label>
+                    <input type="text" id="the-name" class="gradient-text">
+                    <label for="curiosity">Why so curious?</label>
+                    <input placeholder="Example : Nice Website / Crap Website" type="text" id="curiosity" class="gradient-text" list="autoComp">
+                    <datalist id="autoComp">
+                        <option value="Want to know more about You."></option>
+                        <option value="Nice Website.."></option>
+                        <option value="Lets be friends! :)"></option>
+                        <option value="Want to learn Web Dev from you."></option>
+                        <option value="Want to buy you a coffee..!"></option>
+                        <option value="Let's catch up! We used to hang out."></option>
+                    </datalist>
+                    <label for="meter">On a scale of 1-100, how much do you like the portfolio</label>
+                    <input type="range" id="meter" min="0" max="100">
+                    <input type="image" class="submit" src="./dm.png" onclick="send()"/>
+                </form>
+                <div class="wrapper"><div class="get-in-touch">
+                    <img class="get-in-touch-img" src="./social-media.png" alt="Social Media"/>
+                    <p class="get-in-touch-message gradient-text">Get in Touch</p>
+                    <div class="links">
+                        <div class="links-container"><img class="link-img" src="./instagram.png" alt="Instagram"/> <a class="gradient-text" href="https://www.instagram.com/__vipul23__/">https://www.instagram.com/__vipul23__/</a></div>
+                        <div class="links-container"><img class="link-img" src="./whatsapp.png" alt="Whatsapp"/><p style="display: inline" class="gradient-text"> +917986237204</p></div>
+                        <div class="links-container"><img class="link-img" src="./linkedin.png" alt="LinkedIn"/> <a class="gradient-text" href="https://www.linkedin.com/in/vipul-bhardwaj-051b82184/">https://www.linkedin.com/in/vipul-bhardwaj-051b82184/</a></div>
+                        <div class="links-container"><img class="link-img" src="./email.png" alt="Email"/> <p style="display: inline" class="gradient-text">vipulbhardwaj1011@gmail.com</p></div>
+                        <div class="links-container"><img class="link-img" src="./github.png" alt="GitHub"/> <a class="gradient-text" href="https://github.com/vipbhardwaj">https://github.com/vipbhardwaj</a></div>
+                    </div>
+                </div></div>
+                <hr/>
+                <div class="credits">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <!-- </div> -->
+        </div>
+    </body>
+</html>
