@@ -10,6 +10,41 @@ body {
 .enlarge {
     font-size: 3rem;
 }
+.line-img {
+    position: absolute;
+    left: 50%;
+    width: 5vh;
+    height: 5vh;
+    margin-left: -2.5vh;
+    border-radius: 50%;
+    top: calc(80px - 5vh);
+}
+.line-img-end {
+    position: absolute;
+    left: 50%;
+    width: 5vh;
+    height: 5vh;
+    margin-left: -2.5vh;
+    border-radius: 50%;
+    margin-top: -10vh;
+}
+.vl {
+    background-image: linear-gradient(to bottom,  rgb(176, 64, 255), rgb(255, 65, 65));
+    width: 2px;
+    position: absolute;
+    left: 50%;
+    margin-left: -1px;
+    margin-top: -20vh;
+    height: 20vh;
+}
+div.vl:nth-child(2) {
+    margin-top: 0;
+    top: 80px;
+    height: 10vh;
+}
+div.vl:nth-child(10) {
+    height: 10vh;
+}
 .intro {
     margin-top: 20vh;
     border-radius: 10px;
@@ -33,6 +68,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh;
 }
 .wrapper {
     padding: 5px;
@@ -62,6 +98,9 @@ body {
 }
 .projects-title, .upto-speed-title, .hobbies-title, .education-title {
     font-size: 6vw;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 .hobbies-content, .education-content, .upto-speed-content, .projects-content {
     transform: scaleY(0);
