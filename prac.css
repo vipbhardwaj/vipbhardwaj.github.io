@@ -68,6 +68,7 @@ body {
     transform-origin: top;
     position: absolute;
     background-image: url('./into-bg.webp');
+    background-size: cover;
     width: calc(65vw - 44px);
     right: 20px;
     box-shadow: 0 8px 16px 1px rgba(0, 0, 0, 0.5);
@@ -137,6 +138,7 @@ body {
 .gradient-text {
     background-image: url('./into-bg.webp');
     background-clip: text;
+    background-size: cover;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -213,6 +215,8 @@ a:hover {
 .credits {
     padding: 5vh;
     background-image: url('./into-bg.webp');
+    background-size: cover;
+    /* background-repeat: no-repeat; */
     border-radius: 10px;
 }
 .get-in-touch-img {
