@@ -5,7 +5,7 @@ body {
     font-family: 'Fjalla One', sans-serif;
     color: black;
     font-size: 1.5rem;
-    background: #1d1d1d;
+    background: #0b0d1b;
 }
 .enlarge {
     font-size: 3rem;
@@ -18,7 +18,9 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    background-image: linear-gradient(to right, rgb(166, 255, 0), rgb(0, 255, 128));
+    background-image: url('./into-bg.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
     justify-content: space-around;
     font-size: 1.2rem;
     color: black;
@@ -27,7 +29,7 @@ body {
 .about {
     padding: 10px;
     border-radius: 10px;
-    background-color: black;
+    background-image: linear-gradient(to right, rgb(18, 0, 31), rgb(37, 0, 0));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,7 +38,7 @@ body {
     padding: 5px;
     border-radius: 10px;
     position: relative;
-    background: linear-gradient(to right, rgb(166, 255, 0), rgb(0, 255, 128));
+    background: url('./into-bg.webp');
     margin-bottom: 20vh;
 }
 .myImg {
@@ -53,6 +55,11 @@ body {
     cursor: pointer;
     margin-bottom: 10vh;
 }
+.projects-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .projects-title, .upto-speed-title, .hobbies-title, .education-title {
     font-size: 6vw;
 }
@@ -60,7 +67,7 @@ body {
     transform: scaleY(0);
     transform-origin: top;
     position: absolute;
-    background-image: linear-gradient(to right, rgba(166, 255, 0, 0.5), rgba(0, 255, 128, 0.5));
+    background-image: url('./into-bg.webp');
     width: calc(65vw - 44px);
     right: 20px;
     box-shadow: 0 8px 16px 1px rgba(0, 0, 0, 0.5);
@@ -128,7 +135,7 @@ body {
     display: inline-block;
 }
 .gradient-text {
-    background-image: linear-gradient(to right, rgb(166, 255, 0), rgb(0, 255, 128));
+    background-image: url('./into-bg.webp');
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -152,14 +159,14 @@ body {
     border-radius: 20px;
     width: 50px;
     transition: box-shadow 300ms;
-    background-image: linear-gradient(to right, rgba(166, 255, 0, 0.5), rgba(0, 255, 128, 0.5));
+    background-image: linear-gradient(to right, rgba(153, 0, 255, 0.377), rgba(255, 0, 0, 0.377));
 }
 .submit:hover {
     cursor: pointer;
     box-shadow: 0 0 30px 1px black;
 }
 .get-in-touch {
-    background: black;
+    background-image: linear-gradient(to right, rgb(18, 0, 31), rgb(37, 0, 0));
     padding: 50px;
     border-radius: 10px;
 }
@@ -205,7 +212,7 @@ a:hover {
 }
 .credits {
     padding: 5vh;
-    background-image: linear-gradient(to right, rgba(166, 255, 0, 0.5), rgba(0, 255, 128, 0.5));
+    background-image: url('./into-bg.webp');
     border-radius: 10px;
 }
 .get-in-touch-img {
@@ -233,7 +240,10 @@ a:hover {
         font-size: 7vw;
     }
     .hobbies-content, .education-content, .upto-speed-content, .projects-content {
-        width: 55vw;
+        width: 61vw;
+    }
+    #cSTL-content, #skinMart-content, #organizer-content {
+        margin-left: 25%;
     }
 }
 .afterLoad {
