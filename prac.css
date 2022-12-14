@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -6,6 +12,7 @@ body {
     color: black;
     font-size: 1.5rem;
     background: #0b0d1b;
+    
 }
 .enlarge {
     font-size: 3rem;
@@ -17,7 +24,7 @@ body {
     height: 5vh;
     margin-left: -2.5vh;
     border-radius: 50%;
-    top: calc(80px - 5vh);
+    top: 5vh;
 }
 .line-img-end {
     position: absolute;
@@ -39,7 +46,7 @@ body {
 }
 div.vl:nth-child(2) {
     margin-top: 0;
-    top: 80px;
+    top: 10vh;
     height: 10vh;
 }
 div.vl:nth-child(10) {
@@ -48,11 +55,8 @@ div.vl:nth-child(10) {
 .intro {
     margin-top: 20vh;
     border-radius: 10px;
-    width: 100%;
-    height: min(500px, max(300px, 60vh));
     align-items: center;
     display: flex;
-    flex-direction: row;
     background-image: url('./into-bg.webp');
     background-size: cover;
     background-repeat: no-repeat;
@@ -68,7 +72,6 @@ div.vl:nth-child(10) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
 }
 .wrapper {
     padding: 5px;
@@ -76,14 +79,6 @@ div.vl:nth-child(10) {
     position: relative;
     background: url('./into-bg.webp');
     margin-bottom: 20vh;
-}
-.myImg {
-    height: min(500px, max(300px, 60vh));
-    transition: transform 500ms cubic-bezier(.18,.89,.32,1.28);
-}
-.myImg:hover {
-    transform: scale(1.2);
-    opacity: 1;
 }
 .hobbies, .education, .upto-speed, .projects {
     display: flex;
@@ -212,8 +207,9 @@ div.vl:nth-child(10) {
     border-radius: 10px;
 }
 .get-in-touch-message {
+    margin-left: 20%;
     display: inline;
-    font-size: 10rem;
+    font-size: 7rem;
 }
 .links {
     display: flex;
@@ -255,11 +251,20 @@ a:hover {
     padding: 5vh;
     background-image: url('./into-bg.webp');
     background-size: cover;
-    /* background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     border-radius: 10px;
 }
 .get-in-touch-img {
     width: 15vw;
+}
+.afterLoad {
+    display: none;
+    opacity: 0;
+    margin-left: 15%;
+    margin-right: 15%;
+    animation: fadeInAnimation 2000ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 @media (max-width: 1000px) {
     body {
@@ -288,13 +293,10 @@ a:hover {
     #cSTL-content, #skinMart-content, #organizer-content {
         margin-left: 25%;
     }
-}
-.afterLoad {
-    display: none;
-    opacity: 0;
-    animation: fadeInAnimation 2000ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    .afterLoad {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 @keyframes fadeInAnimation {
     0% {
@@ -303,12 +305,6 @@ a:hover {
         opacity: 1;
     }
 }
-
-/*
-*
-*   Initial Loading
-*
-*/
 
 .beforeLoad {
     animation: fadeOutAnimation 1000ms;
