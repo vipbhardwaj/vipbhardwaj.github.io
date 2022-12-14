@@ -61,9 +61,13 @@ div.vl:nth-child(10) {
     background-size: cover;
     background-repeat: no-repeat;
     justify-content: space-around;
+    height: 70vh;
     font-size: 1.2rem;
     color: black;
     margin-bottom: 20vh;
+}
+.myImg {
+    height: 400px;
 }
 .about {
     padding: 10px;
@@ -279,7 +283,7 @@ a:hover {
         font-size: 4rem;
     }
     .myImg {
-        height: max(700px, 60vh);
+        height: 400px;
     }
     .get-in-touch-message {
         font-size: 10vw;
@@ -318,6 +322,10 @@ a:hover {
         opacity: 0;
     }
 }
+
+/******************************************************************************************/
+/*  Load Animation */
+/******************************************************************************************/
 
 .dots {
 	width: 0;
