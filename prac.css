@@ -81,7 +81,6 @@ div.vl:nth-child(10) {
     background:
         linear-gradient(      var(--_g)) 50%/100% var(--_i,100%) no-repeat,
         linear-gradient(90deg,var(--_g)) 50%/var(--_i,100%) 100% no-repeat;
-    outline: calc(var(--w)/2) solid #0009;
     outline-offset: calc(var(--w)/-2 - 2*var(--s));
     transition: .4s;
     cursor: pointer;
@@ -92,12 +91,11 @@ div.vl:nth-child(10) {
     --_i: calc(100% - 2*var(--s));
   }
 .about {
-    padding: 10px;
-    border-radius: 10px;
+    box-sizing: border-box;
     background-image: linear-gradient(to right, rgb(18, 0, 31), rgb(37, 0, 0));
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 50px;
+    border-radius: 10px;
+	margin: 0;
 }
 .wrapper {
     padding: 5px;
@@ -106,121 +104,164 @@ div.vl:nth-child(10) {
     background: url('./into-bg.webp');
     margin-bottom: 20vh;
 }
-.hobbies, .education, .upto-speed, .projects {
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-    margin-bottom: 10vh;
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
 }
-.projects-wrapper {
+.dropdown-container {
+	max-width: 800px;
+	min-width: 300px;
+	margin: 1rem auto;
+	border: 2px solid white;
+	color: #888;
+	overflow: hidden;
+}
+
+.dropdown-container header {
+	cursor: pointer;
+	font-size: 0.6rem;
+	padding: 1rem;
+	background-color: rgb(18, 0, 31);
+	color: white;
+	transition: background-color 350ms ease-in-out;
+}
+
+.dropdown-container.open header {
+	background-color: rgb(37, 0, 0);
+}
+
+.dropdown-container h1 {
+	float: left;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+}
+
+.dropdown-container .expand {
+	float: right;
+	transform: rotate(0);
+	font-size: 1.8em;
+	transition: transform 350ms ease-in-out;
+}
+
+.dropdown-container.open .expand{
+	transform: rotate(45deg);
+}
+
+
+.dropdown-container article {
+	max-height: 0px;
+	overflow: hidden;
+	line-height: 1.6; 
+	transition: max-height 350ms ease-in-out;
+    background-color: #0b0d1b;
+    color: white;
+}
+
+/* padding can't be on article element because it won't collapse properly, add wrapper around contents */
+.dropdown-container .article-inner {
+	padding: 1rem;
+}
+.projects {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 40px;
+    padding: 20px;
 }
-.projects-title, .upto-speed-title, .hobbies-title, .education-title {
-    font-size: 6vw;
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-.hobbies-content, .education-content, .upto-speed-content, .projects-content {
-    transform: scaleY(0);
-    transform-origin: top;
-    position: absolute;
+.project-card {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url('./into-bg.webp');
-    background-size: cover;
-    width: calc(65vw - 44px);
-    right: 20px;
-    box-shadow: 0 8px 16px 1px rgba(0, 0, 0, 0.5);
-    padding: 12px 16px;
-    transition: all 300ms cubic-bezier(.18,.89,.32,1.28);
-    cursor: text;
+    padding: 20px;
+    transform: perspective(1000px);
+    transform-style: preserve-3d;
 }
-.hobbies-content > hr, .education-content > hr, .upto-speed-content > hr, .projects-content > hr {
-    height: 2px !important;
-    margin-top: 0;
-    color: #1d1d1d;
-}
-.hobbies:hover .hobbies-content {
-    transform: scaleY(1);
-}
-.upto-speed:hover .upto-speed-content {
-    transform: scaleY(1);
-}
-.education:hover .education-content {
-    transform: scaleY(1);
-}
-.projects:hover .projects-content {
-    transform: scaleY(1);
-}
-.title {
-    margin-bottom: 10px;
-}
-.cSTL-dropper, .skinMart-dropper, .organizer-dropper {
-    width: 25px;
-    transition: all 500ms cubic-bezier(.18,.89,.32,1.28);
-}
-.cSTL, .skinMart, .organizer {
-    display: inline-block;
-    padding: 5px;
-    color: black;
-    border-radius: 10px;
-    transition: all 500ms;
-}
-.cSTL:hover, .skinMart:hover, .organizer:hover {
+.project-card-inner {
+    width: 200px;
+    border: 0;
     cursor: pointer;
-    color: black;
+    border-radius: 5px;
+    background-color: rgb(37, 0, 0);
+    padding: 20px;
+    transform: translateZ(50px);
+    text-align: center;
+    color: white;
 }
-#cSTL-content, #skinMart-content, #organizer-content {
-    position: absolute;
-    transform: scaleY(0);
-    transform-origin: top;
-    padding: 15px 50px;
-    margin-left: 20%;
-    right: 0;
-    top: 0;
-    transition: all 300ms cubic-bezier(.18,.89,.32,1.28);
-}
-.gallery {
-    margin-top: 20px;
-    --g: 8px;   /* the gap */
-    --s: 400px; /* the size */
-    display: grid;
-}
-.gallery > img {
-    grid-area: 1/1;
-    width: 27vw;
-    aspect-ratio: 1;
-    object-fit: cover;
-    transform: translate(var(--_x,0),var(--_y,0));
-    cursor: pointer;
-    z-index: 0;
-    transition: .3s, z-index 0s .3s;
-}
-.gallery img:hover {
-    --_i: 1;
+.modal {
+    display: none;
+    position: fixed;
     z-index: 1;
-    transition: transform .2s, clip-path .3s .2s, z-index 0s;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.gallery:hover img {
-    transform: translate(0,0);
+  
+.modal-content {
+    margin: 20px auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    border: 2px solid white;
+    animation-name: modalopen;
+    animation-duration: 500ms;
 }
-.gallery > img:nth-child(1) {
-    clip-path: polygon(50% 50%,calc(50%*var(--_i,0)) calc(120%*var(--_i,0)),0 calc(100%*var(--_i,0)),0 0,100% 0,100% calc(100%*var(--_i,0)),calc(100% - 50%*var(--_i,0)) calc(120%*var(--_i,0)));
-    --_y: calc(-1*var(--g))
+  
+.modal-header {
+    background-image: linear-gradient(to right, rgb(18, 0, 31), rgb(37, 0, 0));
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
-.gallery > img:nth-child(2) {
-    clip-path: polygon(50% 50%,calc(100% - 120%*var(--_i,0)) calc(50%*var(--_i,0)),calc(100% - 100%*var(--_i,0)) 0,100% 0,100% 100%,calc(100% - 100%*var(--_i,0)) 100%,calc(100% - 120%*var(--_i,0)) calc(100% - 50%*var(--_i,0)));
-    --_x: var(--g)
+  
+.modal-body {
+    padding: 10px 20px;
+    color: white;
+    background: #0b0d1b;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-height: 70vh;
+    overflow-x: auto;
 }
-.gallery > img:nth-child(3) {
-    clip-path: polygon(50% 50%,calc(100% - 50%*var(--_i,0)) calc(100% - 120%*var(--_i,0)),100% calc(100% - 120%*var(--_i,0)),100% 100%,0 100%,0 calc(100% - 100%*var(--_i,0)),calc(50%*var(--_i,0)) calc(100% - 120%*var(--_i,0)));
-    --_y: var(--g)
+  
+.close {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
 }
-.gallery > img:nth-child(4) {
-    clip-path: polygon(50% 50%,calc(120%*var(--_i,0)) calc(50%*var(--_i,0)),calc(100%*var(--_i,0)) 0,0 0,0 100%,calc(100%*var(--_i,0)) 100%,calc(120%*var(--_i,0)) calc(100% - 50%*var(--_i,0)));
-    --_x: calc(-1*var(--g))
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
+  
+@keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.projImg {
+    margin: auto;
+    width: min(80%, 80vh);
+}
+
 .gradient-text {
     background-image: url('./into-bg.webp');
     background-clip: text;
@@ -292,11 +333,10 @@ input {
 }
 a {
     font-style: italic;
-    color: black;
+    color: white;
     transition: all 500ms;
 }
 a:hover {
-    color: black;
     box-shadow: 3px 5px 10px black;
 }
 .credits {

@@ -6,6 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet"> 
         <title>Vipul Bhardwaj</title>
         <link rel="stylesheet" type="text/css" href="prac.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <script>
         // function send() {
@@ -28,16 +29,94 @@
             // document.getElementsByClassName("afterLoad")[0].style.display = 'flex';
             // document.getElementsByClassName("afterLoad")[0].style.justifyContent = 'space-between';
             // console.log("added AFTER");
-            var intro = document.getElementsByClassName('intro')[0].offsetHeight;
-            document.querySelector('div.vl :nth-child(4)').style.top = intro;
-            var about = document.getElementsByClassName('wrapper')[0].offsetHeight;
-            document.querySelector('div.vl :nth-child(6)').style.top = intro + about;
-            var form = document.getElementsByClassName('mordernForm')[0].offsetHeight;
-            document.querySelector('div.vl :nth-child(8)').style.top = intro + about + form;
-            var touch = document.getElementsByClassName('wrapper')[1].offsetHeight;
-            document.querySelector('div.vl :nth-child(10)').style.top = intro + about + form + touch;
-            document.querySelector('.line-img-end').style.top = intro + about + form + touch;
+            
+            // var intro = document.getElementsByClassName('intro')[0].offsetHeight;
+            // document.querySelector('.vl :nth-child(4)').style.top = intro;
+            // var about = document.getElementsByClassName('wrapper')[0].offsetHeight;
+            // document.querySelector('.vl :nth-child(6)').style.top = intro + about;
+            // var form = document.getElementsByClassName('mordernForm')[0].offsetHeight;
+            // document.querySelector('.vl :nth-child(8)').style.top = intro + about + form;
+            // var touch = document.getElementsByClassName('wrapper')[1].offsetHeight;
+            // document.querySelector('.vl :nth-child(10)').style.top = intro + about + form + touch;
+            // document.querySelector('.line-img-end').style.top = intro + about + form + touch;
+
+            //////////////////////////////////////////////////////////
+            // MODAL
+            //////////////////////////////////////////////////////////
+            // Get DOM Elements
+            const ficModal = document.querySelector('#fic-modal');
+            const skinmartModal = document.querySelector('#skinmart-modal');
+            const cstlModal = document.querySelector('#cstl-modal');
+            const organizerModal = document.querySelector('#organizer-modal');
+            const modalBtn = document.querySelectorAll('.project-card-inner');
+            const closeBtn = document.querySelectorAll('.close');
+
+            // Events
+            for(var i = 0; i < modalBtn.length; i++) {
+                modalBtn[i].addEventListener('click', openModal);
+            }
+            for(var i = 0; i < closeBtn.length; i++) {
+                closeBtn[i].addEventListener('click', closeModal);
+            }
+            window.addEventListener('click', outsideClick);
+
+            // Open
+            function openModal() {
+                // console.log(this.id);
+                if(this.id == 'fic-button') {ficModal.style.display = 'block';}
+                else if(this.id == 'skinmart-button') {skinmartModal.style.display = 'block';}
+                else if(this.id == 'cstl-button') {cstlModal.style.display = 'block';}
+                else if(this.id == 'organizer-button') {organizerModal.style.display = 'block';}
+            }
+
+            // Close
+            function closeModal() {
+                ficModal.style.display = 'none';
+                skinmartModal.style.display = 'none';
+                cstlModal.style.display = 'none';
+                organizerModal.style.display = 'none';
+            }
+
+            // Close If Outside Click
+            function outsideClick(e) {
+                if (e.target == ficModal) {
+                    ficModal.style.display = 'none';
+                }
+                if (e.target == skinmartModal) {
+                    skinmartModal.style.display = 'none';
+                }
+                if (e.target == cstlModal) {
+                    cstlModal.style.display = 'none';
+                }
+                if (e.target == organizerModal) {
+                    organizerModal.style.display = 'none';
+                }
+            }
+
+            //////////////////////////////////////////////////////////
+            // ACCORDION
+            //////////////////////////////////////////////////////////
+            var headers = document.querySelectorAll('.dropdown-container header');
+            for(var i = 0; i < headers.length; i++) {
+                headers[i].addEventListener('click', openCurrAccordion);
+            }
+            function openCurrAccordion(e) {
+                for(var i = 0; i < headers.length; i++) {
+                    var parent = headers[i].parentElement;
+                    var article = headers[i].nextElementSibling;
+
+                    if (this === headers[i] && !parent.classList.contains('open')) {
+                        parent.classList.add('open');
+                        article.style.maxHeight = article.scrollHeight + 'px';
+                    }
+                    else {
+                        parent.classList.remove('open');
+                        article.style.maxHeight = '0px';
+                    }
+                }
+            }
         }, 5000);
+        
         function cSTL() {
             skinMartFlag = 0;
             organizerFlag = 0;
@@ -124,59 +203,123 @@
             </div>
             <div class="vl"></div>
             <div class="wrapper"><div class="about">
-                <div class="projects">
-                    <span class="projects-title gradient-text">Projects</span>
-                    <div class="projects-content">
-                        <hr/>
-                        <div class="title">
-                            <img class="cSTL-dropper" src="./plus.png"/>
-                            <div class="cSTL" onclick="cSTL()">C-STL</div>
-                        </div>
-                        <div id="cSTL-content">
-                            <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
-                        </div>
-                        <div class="title">
-                            <img class="organizer-dropper" src="./plus.png"/>
-                            <div class="organizer" onclick="organizer()">Organiz-er</div>
-                        </div>
-                        <div id="organizer-content">
-                            <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
-                        </div>
-                        <div class="title">
-                            <img class="skinMart-dropper" src="./plus.png"/>
-                            <div class="skinMart" onclick="skinMart()">Skin Mart</div>
-                        </div>
-                        <div id="skinMart-content">
-                            <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a> (tap / hover to expand image)</p>
-                            <div class="gallery">
-                                <img class="projImg" src="skinmart1.png" alt="Landing Page"/>
-                                <img class="projImg" src="skinmart2.png" alt="Inventory"/>
-                                <img class="projImg" src="skinmart3.png" alt="Info"/>
-                                <img class="projImg" src="skinmart4.png" alt="Game Info"/>
+                <div class="dropdown-container">
+                    <header class="clearfix">
+                        <h1>Projects</h1>
+                        <figure class="expand">+</figure>
+                    </header>
+                    <article>
+                        <div class="article-inner projects">
+                            
+                            <div data-tilt class="project-card">
+                                <button id="fic-button" class="project-card-inner">
+                                    <h4>FIC-SGGSCC</h4>
+                                </button>
+                            </div>
+                            <div id="fic-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>FIC - SGGSCC</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>A website undertaken as a project given to my and my friend by Finance and Investment Cell (<a href="https://ficsggscc.com/">FIC</a>) of Sri Guru Gobind Singh College of Commerce (<a href="https://www.sggscc.ac.in/">SGGSCC</a>) (under Delhi University). This website is related to a fest that they had taken, fest involved online trading events and investment events. Technologies used for this website were ReactJS, Bootstrap, Icon Libraries for Frontend and PHP, Express, Node for backend. MongoDB for used for database.<a href="https://app.ficsggscc.com/">Website link</a></p>
+                                        <img class="projImg" src="fic1.png"/>
+                                        <img class="projImg" src="fic2.jpeg"/>
+                                        <img class="projImg" src="fic3.jpeg"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-tilt class="project-card">
+                                <button id="skinmart-button" class="project-card-inner">
+                                    <h4>Skin Mart</h4>
+                                </button>
+                            </div>
+                            <div id="skinmart-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>Skin Mart</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a></p>
+                                        <img class="projImg" src="skinmart1.png" alt="Landing Page"/>
+                                        <img class="projImg" src="skinmart2.png" alt="Inventory"/>
+                                        <img class="projImg" src="skinmart3.png" alt="Info"/>
+                                        <img class="projImg" src="skinmart4.png" alt="Game Info"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div data-tilt class="project-card">
+                                <button id="cstl-button" class="project-card-inner">
+                                    <h4>C-STL</h4>
+                                </button>
+                            </div>
+                            <div id="cstl-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>C - STL</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div data-tilt class="project-card">
+                                <button id="organizer-button" class="project-card-inner">
+                                    <h4>organiz-er</h4>
+                                </button>
+                            </div>
+                            <div id="organizer-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>Organiz-er</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
-                <div class="upto-speed">
-                    <span class="upto-speed-title gradient-text">Upto Speed</span>
-                    <div class="upto-speed-content">
-                        <hr/>
-                        <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
-                    </div>
+                <div class="dropdown-container">
+                    <header class="clearfix">
+                        <h1>Up To Speed</h1>
+                        <figure class="expand">+</figure>
+                    </header>
+                    <article>
+                        <div class="article-inner">
+                            <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
+                        </div>
+                    </article>
                 </div>
-                <div class="hobbies">
-                    <span class="hobbies-title gradient-text">Hobbies</span>
-                    <div class="hobbies-content">
-                        <hr/>
-                        <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
-                    </div>
+                <div class="dropdown-container">
+                    <header class="clearfix">
+                        <h1>Hobbies</h1>
+                        <figure class="expand">+</figure>
+                    </header>
+                    <article>
+                        <div class="article-inner">
+                            <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                        </div>
+                    </article>
                 </div>
-                <div class="education">
-                    <span class="education-title gradient-text">Education</span>
-                    <div class="education-content">
-                        <hr/>
-                        <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
-                    </div>
+                <div class="dropdown-container">
+                    <header class="clearfix">
+                        <h1>Education</h1>
+                        <figure class="expand">+</figure>
+                    </header>
+                    <article>
+                        <div class="article-inner">
+                            <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                        </div>
+                    </article>
                 </div>
             </div></div>
             <div class="vl"></div>
@@ -214,5 +357,13 @@
             <div class="vl"></div>
             <img class="line-img-end" src="./into-bg.webp"/>
         </div>
+        <script type="text/javascript" src="./vanilla-tilt.js"></script>
+        <script type="text/javascript">
+            VanillaTilt.init(document.querySelector('.project-card'), {
+                max: 25,
+                speed: 400,
+            })
+            VanillaTilt.init(document.querySelectorAll('.project-card'));
+        </script>
     </body>
 </html>
