@@ -9,37 +9,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <script>
-        // function send() {
-        //     Email.send({
-        //         Host: "smtp.gmail.com",
-        //         Username: sender,
-        //         Password:password,
-        //         To: receiver,
-        //         From: sender,
-        //         Subject: "Check Email Sending",
-        //         Body: content,
-        //     }).then(function (message) {
-        //         alert("Email sent successfully")
-        //     });
-        // }
-        var cSTLFlag = 0, skinMartFlag = 0, organizerFlag = 0;
         window.setTimeout(function() {
             document.getElementsByClassName("beforeLoad")[0].remove();
             document.getElementsByClassName("afterLoad")[0].style.display = 'block';
-            // document.getElementsByClassName("afterLoad")[0].style.display = 'flex';
-            // document.getElementsByClassName("afterLoad")[0].style.justifyContent = 'space-between';
-            // console.log("added AFTER");
             
-            // var intro = document.getElementsByClassName('intro')[0].offsetHeight;
-            // document.querySelector('.vl :nth-child(4)').style.top = intro;
-            // var about = document.getElementsByClassName('wrapper')[0].offsetHeight;
-            // document.querySelector('.vl :nth-child(6)').style.top = intro + about;
-            // var form = document.getElementsByClassName('mordernForm')[0].offsetHeight;
-            // document.querySelector('.vl :nth-child(8)').style.top = intro + about + form;
-            // var touch = document.getElementsByClassName('wrapper')[1].offsetHeight;
-            // document.querySelector('.vl :nth-child(10)').style.top = intro + about + form + touch;
-            // document.querySelector('.line-img-end').style.top = intro + about + form + touch;
-
             //////////////////////////////////////////////////////////
             // MODAL
             //////////////////////////////////////////////////////////
@@ -116,64 +89,6 @@
                 }
             }
         }, 5000);
-        
-        function cSTL() {
-            skinMartFlag = 0;
-            organizerFlag = 0;
-            document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
-            document.getElementById('organizer-content').style.transform = 'scaleY(0)';
-            document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
-            document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
-            if(!cSTLFlag) {
-                document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(135deg)';
-                document.getElementById('cSTL-content').style.transform = 'scaleY(1)';
-                cSTLFlag = 1;
-                document.getElementsByClassName('projects-content')[0].style.height = '25vh';
-            } else {
-                document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
-                document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
-                cSTLFlag = 0;
-                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
-            }
-        }
-        function skinMart() {
-            cSTLFlag = 0;
-            organizerFlag = 0;
-            document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
-            document.getElementById('organizer-content').style.transform = 'scaleY(0)';
-            document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
-            document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
-            if(!skinMartFlag) {
-                document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(135deg)';
-                document.getElementById('skinMart-content').style.transform = 'scaleY(1)';
-                skinMartFlag = 1;
-                document.getElementsByClassName('projects-content')[0].style.height = '40vw';
-            } else {
-                document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
-                document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
-                skinMartFlag = 0;
-                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
-            }
-        }
-        function organizer() {
-            cSTLFlag = 0;
-            skinMartFlag = 0;
-            document.getElementById('cSTL-content').style.transform = 'scaleY(0)';
-            document.getElementById('skinMart-content').style.transform = 'scaleY(0)';
-            document.getElementsByClassName('cSTL-dropper')[0].style.transform = 'rotate(0deg)';
-            document.getElementsByClassName('skinMart-dropper')[0].style.transform = 'rotate(0deg)';
-            if(!organizerFlag) {
-                document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(135deg)';
-                document.getElementById('organizer-content').style.transform = 'scaleY(1)';
-                organizerFlag = 1;
-                document.getElementsByClassName('projects-content')[0].style.height = '23vh';
-            } else {
-                document.getElementById('organizer-content').style.transform = 'scaleY(0)';
-                document.getElementsByClassName('organizer-dropper')[0].style.transform = 'rotate(0deg)';
-                organizerFlag = 0;
-                document.getElementsByClassName('projects-content')[0].style.height = '24vh';
-            }
-        }
     </script>
     <body>
         <div class='beforeLoad'>
@@ -312,19 +227,52 @@
                 </div>
                 <div class="dropdown-container">
                     <header class="clearfix">
-                        <h1>Education</h1>
+                        <h1>Education / Experience</h1>
                         <figure class="expand">+</figure>
                     </header>
                     <article>
                         <div class="article-inner">
-                            <p>I am currently (as of Jan '22) pursuing my underGrad from <a href="https://pes.edu/">PES University</a> in Bangalore, India. Earlier, I finished my inter / secondary education / senior high school from <a href="https://mgmschoolludhiana.com/">M.G.M Public School</a>, Punjab with a score of 87%.</p>
+                            <div class="timeline">
+                                <ul>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Zscaler Internship</h3>
+                                            <p>2 month summer intern, hired during 3rd year of B-tech CS degree. Worked as a frontend developer, using ReactJS primarily. Explored Linters, ESLint primarily</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>June - Aug 2022</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Inter</h3>
+                                            <p>Completed my Intermediate education / Senior High School / Secondary Education with a percentage of 87</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>April 2018</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Merit</h3>
+                                            <p>Completed my education uptil 10th grade with a score of 10 GPA</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>March 2016</h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
                 </div>
             </div></div>
             <div class="vl"></div>
             <form class="mordernForm" method="post" name="Form">
-                <hr style="color: rgb(255, 0, 43); width: 98%; margin: auto;"/>
+                <hr/>
                 <label for="the-name">How should I recognize you?</label>
                 <input type="text" id="the-name" class="gradient-text">
                 <label for="curiosity">Why so curious?</label>
@@ -340,7 +288,7 @@
                 <label for="meter">On a scale of 1-100, how much do you like the portfolio</label>
                 <input type="range" id="meter" min="0" max="100">
                 <input type="image" class="submit" src="./dm.png" onclick="send()"/>
-                <hr style="color: rgb(255, 0, 221); width: 98%; margin: auto;"/>
+                <hr/>
             </form>
             <div class="vl"></div>
             <div class="wrapper"><div class="get-in-touch">

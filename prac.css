@@ -12,7 +12,7 @@ body {
     color: black;
     font-size: 1.5rem;
     background: #0b0d1b;
-    
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 }
 .enlarge {
     font-size: 3rem;
@@ -125,13 +125,13 @@ div.vl:nth-child(10) {
 	cursor: pointer;
 	font-size: 0.6rem;
 	padding: 1rem;
-	background-color: rgb(18, 0, 31);
+	background-color: #0b0d1b;
 	color: white;
 	transition: background-color 350ms ease-in-out;
 }
 
 .dropdown-container.open header {
-	background-color: rgb(37, 0, 0);
+	background-image: url('./into-bg.webp');
 }
 
 .dropdown-container h1 {
@@ -216,7 +216,7 @@ div.vl:nth-child(10) {
 }
   
 .modal-header {
-    background-image: linear-gradient(to right, rgb(18, 0, 31), rgb(37, 0, 0));
+    background-image: url('./into-bg.webp');
     padding: 15px;
     color: #fff;
     border-top-left-radius: 5px;
@@ -226,7 +226,7 @@ div.vl:nth-child(10) {
 .modal-body {
     padding: 10px 20px;
     color: white;
-    background: #0b0d1b;
+    background-image: linear-gradient(to right, rgb(18, 0, 31), rgb(37, 0, 0));
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -262,6 +262,126 @@ div.vl:nth-child(10) {
     width: min(80%, 80vh);
 }
 
+
+/**********************************************************************************************/
+/* EDUCATION TIMELINE */
+/**********************************************************************************************/
+.timeline {
+    position: relative;
+    margin: 0 auto;
+    width: 90%;
+    
+}
+.timeline ul li {
+    margin-bottom: 50px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.point {
+    min-width: 20px;
+    height: 20px;
+    background-color: rgb(37, 0, 0);
+    border-radius: 100%;
+    z-index: 2;
+    border: 3px #9e9e9e solid;
+    position: relative;
+    left: 1px;
+}
+.timeline ul li .content {
+    width: 50%;
+    padding: 0 20px;
+}
+.timeline ul li:nth-child(odd) .content {
+    padding-left: 0;
+}
+.timeline ul li:nth-child(odd) .date {
+    padding-right: 0;
+}
+.timeline ul li:nth-child(even) .content {
+    padding-right: 0;
+}
+.timeline ul li:nth-child(even) .date {
+    padding-left: 0;
+}
+.timeline ul li .date {
+    width: 50%;
+    padding: 0 20px;
+    font-weight: normal;
+}
+.timeline ul li .date h4 {
+    background-color: rgb(37, 0, 0);
+    width: 100px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.timeline ul li .content h3 {
+    padding: 10px 20px;
+    background-color: rgb(37, 0, 0);
+    margin-bottom: 0;
+    text-align: center;
+    border: 1px solid white;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.timeline ul li .content p {
+    padding: 10px 20px;
+    background-color: rgb(18, 0, 31);
+    margin-top: 0;
+    text-align: center;
+    border: 1px solid white;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.timeline ul li:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.timeline ul li:nth-child(even) .date h4 {
+    float: right
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    left: 50%;
+    background-color: #9e9e9e;
+}
+@media (max-width: 800px) {
+    .point {
+        min-width: 15px;
+        height: 15px;
+    }
+    html, body {
+        font-size: 15px;
+    }
+}
+@media (max-width: 650px) {
+    html, body {
+        font-size: 14px;
+    }
+    
+    .point {
+        min-width: 12px;
+        height: 12px;
+    }
+}
+@media (max-width: 450px) {
+    html, body {
+        font-size: 10px;
+    }
+    p {
+        padding: 10px !important;
+    }
+}
+
+/**************************************************************************************/
+
 .gradient-text {
     background-image: url('./into-bg.webp');
     background-clip: text;
@@ -281,6 +401,18 @@ div.vl:nth-child(10) {
 .mordernForm > * {
     width: 50%;
 }
+.mordernForm hr:first-child {
+    color: rgb(255, 0, 43);
+    width: 98%;
+    margin: auto;
+}
+.mordernForm hr:last-child {
+    color: rgb(255, 0, 221);
+    width: 98%;
+    margin: auto;
+}
+
+
 .submit {
     padding: 10px;
     margin-top: 20px;
