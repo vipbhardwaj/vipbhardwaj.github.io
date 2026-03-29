@@ -1,0 +1,145 @@
+vipbhardwaj.github.io/
+│
+├── 📁 public/                           # Static assets (served by Next.js)
+│   └── 📁 images/
+│       ├── 📁 projects/                 # Project screenshots
+│       │   ├── fic1.png
+│       │   ├── fic2.jpeg
+│       │   ├── fic3.jpeg
+│       │   ├── skinmart1.png
+│       │   ├── skinmart2.png
+│       │   ├── skinmart3.png
+│       │   └── skinmart4.png
+│       ├── 📁 profile/                  # Profile images
+│       │   └── myImg1.jpeg
+│       ├── 📁 icons/                    # Social media icons
+│       │   ├── dm.png
+│       │   ├── email.png
+│       │   ├── github.png
+│       │   ├── instagram.png
+│       │   ├── linkedin.png
+│       │   ├── whatsapp.png
+│       │   └── social-media.png
+│       └── 📁 backgrounds/              # Background images
+│           └── into-bg.webp
+│
+├── 📁 src/                              # Main source code
+│   │
+│   ├── 📁 app/                          # Next.js App Router
+│   │   ├── layout.tsx                   # Root layout
+│   │   ├── page.tsx                     # Home page (combines all components)
+│   │   └── globals.css                  # Global styles & tailwind directives
+│   │
+│   ├── 📁 components/                   # React Components
+│   │   ├── Hero.tsx                     # Hero section + text scramble
+│   │   ├── About.tsx                    # About section + skills
+│   │   ├── Projects.tsx                 # Projects grid (uses PROJECTS constant)
+│   │   ├── Timeline.tsx                 # Experience timeline (uses TIMELINE_EVENTS)
+│   │   ├── Contact.tsx                  # Contact + social links (uses SOCIAL_LINKS)
+│   │   ├── TextScramble.tsx             # Text animation component
+│   │   └── AnimatedBackground.tsx       # Parallax background (uses useMousePosition)
+│   │
+│   ├── 📁 hooks/                        # Custom React Hooks
+│   │   ├── useMousePosition.ts          # Track cursor coordinates
+│   │   ├── useScrollAnimation.ts        # Scroll-based animations
+│   │   └── index.ts                     # Barrel export
+│   │
+│   ├── 📁 types/                        # TypeScript Type Definitions
+│   │   └── index.ts                     # Project, TimelineEvent, SocialLink, Skill
+│   │
+│   ├── 📁 utils/                        # Utilities & Constants
+│   │   ├── constants.ts                 # PROJECTS, TIMELINE_EVENTS, SOCIAL_LINKS, SKILLS, COLORS
+│   │   └── index.ts                     # Helper functions (cn, delay)
+│   │
+│   └── 📁 styles/                       # Additional CSS Modules
+│       └── (animations.css - optional)
+│
+├── 📁 _legacy/                          # Archived Old Files (Reference Only)
+│   ├── index.html                       # Old portfolio HTML
+│   ├── prac.css                         # Old portfolio styles
+│   ├── vanilla-tilt.js                  # Old 3D tilt library
+│   └── README_ORIGINAL.md               # Original readme
+│
+├── 📁 .vscode/                          # VS Code settings
+│   └── settings.json
+│
+├── 📁 .git/                             # Git repository
+│
+├── 📄 .env.example                      # Environment variables template
+├── 📄 .eslintrc.json                    # ESLint configuration
+├── 📄 .gitignore                        # Git ignore rules
+├── 📄 package.json                      # Dependencies & scripts
+├── 📄 tsconfig.json                     # TypeScript configuration
+├── 📄 next.config.js                    # Next.js configuration
+├── 📄 tailwind.config.js                # Tailwind CSS configuration
+├── 📄 postcss.config.js                 # PostCSS configuration
+├── 📄 README.md                         # Project documentation
+├── 📄 STRUCTURE.md                      # Directory structure guide
+├── 📄 RESTRUCTURING_SUMMARY.md          # This restructuring summary
+├── 📄 NEXT_APP_README.md                # Old Next.js readme
+└── 📄 README_NEW.md                     # New comprehensive readme
+
+═════════════════════════════════════════════════════════════════
+
+IMPORT EXAMPLES
+
+From Utils:
+  import { PROJECTS, SKILLS, COLORS } from "@/utils/constants"
+  import { cn, delay } from "@/utils"
+
+From Hooks:
+  import { useMousePosition, useScrollAnimation } from "@/hooks"
+
+From Types:
+  import type { Project, TimelineEvent, SocialLink, Skill } from "@/types"
+
+From Components (relative):
+  import Hero from "./Hero"
+  
+From Components (absolute):
+  import Hero from "@/components/Hero"
+
+═════════════════════════════════════════════════════════════════
+
+KEY STATISTICS
+
+📊 Components: 7
+   - Hero, About, Projects, Timeline, Contact, TextScramble, AnimatedBackground
+
+🎣 Custom Hooks: 2
+   - useMousePosition, useScrollAnimation
+
+🏷️ TypeScript Types: 4
+   - Project, TimelineEvent, SocialLink, Skill
+
+📦 Data Constants: 6
+   - PROJECTS, TIMELINE_EVENTS, SOCIAL_LINKS, SKILLS, COLORS, ANIMATION_DURATION
+
+📝 Config Files: 5
+   - tsconfig.json, next.config.js, tailwind.config.js, postcss.config.js, .eslintrc.json
+
+📚 Documentation: 4
+   - README.md, STRUCTURE.md, RESTRUCTURING_SUMMARY.md, NEXT_APP_README.md
+
+═════════════════════════════════════════════════════════════════
+
+DEVELOPMENT COMMANDS
+
+npm run dev              Start development server on :3000
+npm run build           Build for production (outputs to /out)
+npm start               Start production server
+npm run lint            Run ESLint
+
+QUICK EDITS
+
+Edit Portfolio Data:    src/utils/constants.ts
+Edit Colors:           tailwind.config.js or src/utils/constants.ts
+Add Component:         Create in src/components/.tsx, import in src/app/page.tsx
+Add Hook:              Create in src/hooks/, export from index.ts
+Update Images:         Place in public/images/, reference in components
+
+═════════════════════════════════════════════════════════════════
+
+Created: March 29, 2026
+Status: ✅ RESTRUCTURING COMPLETE
+Ready: Ready for development and deployment

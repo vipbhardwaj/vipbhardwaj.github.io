@@ -1,0 +1,129 @@
+"use client";
+
+import { motion } from "framer-motion";
+import TextScramble from "./TextScramble";
+import { useState } from "react";
+
+export default function Hero() {
+  const [isScrambling, setIsScrambling] = useState(false);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
+  };
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-dark to-pink-900/20" />
+        <motion.div
+          className="absolute w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+          style={{ top: "10%", left: "5%" }}
+        />
+        <motion.div
+          className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, delay: 5 }}
+          style={{ bottom: "10%", right: "5%" }}
+        />
+      </div>
+
+      <motion.div
+        className="text-center z-10 px-4 max-w-4xl"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Main title with scramble effect */}
+        <motion.div
+          variants={itemVariants}
+          className="cursor-pointer mb-8"
+        >
+          <h1 className="text-6xl md:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-magenta via-pink to-purple-500 hover:from-purple-500 hover:via-magenta hover:to-pink transition-all duration-300">
+            <TextScramble text="VIPUL BHARDWAJ" delay={0} />
+          </h1>
+        </motion.div>
+
+        {/* Subtitle */}
+        <motion.div variants={itemVariants} className="space-y-4">
+          <h2 className="text-2xl md:text-4xl font-light text-gray-300">
+            Full Stack Developer & Competitive Coder
+          </h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Building beautiful, performant web experiences with modern technologies
+          </p>
+        </motion.div>
+
+        {/* CTA Button */}
+        <motion.div variants={itemVariants} className="mt-12">
+          <motion.a
+            href="#projects"
+            className="glass-card inline-block px-8 py-4 text-lg font-semibold hover:border-magenta"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(230, 126, 255, 0.6)" }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Explore My Work
+          </motion.a>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-16"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-1 h-12 mx-auto bg-gradient-to-b from-magenta to-transparent rounded-full" />
+          <p className="text-sm text-gray-400 mt-2">Scroll to explore</p>
+        </motion.div>
+      </motion.div>
+
+      {/* Floating particles effect */}
+      <div className="absolute inset-0 -z-5 overflow-hidden">
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-magenta/50 rounded-full"
+            animate={{
+              x: [Math.random() * 100 - 50, Math.random() * 100 - 50],
+              y: [Math.random() * 100 - 50, Math.random() * 100 - 50],
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            style={{
+              top: `${Math.random() * 80 + 10}%`,
+              left: `${Math.random() * 80 + 10}%`,
+            }}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
