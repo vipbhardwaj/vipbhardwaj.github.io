@@ -7,6 +7,7 @@
         <title>Vipul Bhardwaj</title>
         <link rel="stylesheet" type="text/css" href="prac.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     </head>
     <script>
         window.setTimeout(function() {
@@ -88,6 +89,153 @@
                     }
                 }
             }
+
+            //////////////////////////////////////////////////////////
+            // TEXT SCRAMBLE EFFECT
+            //////////////////////////////////////////////////////////
+            class TextScramble {
+                constructor(el) {
+                    this.el = el;
+                    this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                    this.update = this.update.bind(this);
+                }
+                setText(newText) {
+                    const oldText = this.el.innerText;
+                    const length = Math.max(oldText.length, newText.length);
+                    const promise = new Promise((resolve) => this.resolve = resolve);
+                    this.queue = [];
+                    for (let i = 0; i < length; i++) {
+                        const from = oldText[i] || '';
+                        const to = newText[i] || '';
+                        const start = Math.floor(Math.random() * 40);
+                        const end = start + Math.floor(Math.random() * 40);
+                        this.queue.push({ from, to, start, end, char: '' });
+                    }
+                    cancelAnimationFrame(this.frameRequest);
+                    this.frame = 0;
+                    this.update();
+                    return promise;
+                }
+                update() {
+                    let output = '', complete = 0;
+                    for (let i = 0, n = this.queue.length; i < n; i++) {
+                        let { from, to, start, end, char } = this.queue[i];
+                        if (this.frame >= end) {
+                            complete++;
+                            output += to;
+                        } else if (this.frame >= start) {
+                            if (!char || Math.random() < 0.28) {
+                                char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                                this.queue[i].char = char;
+                            }
+                            output += char;
+                        } else {
+                            output += from;
+                        }
+                    }
+                    this.el.innerText = output;
+                    if (complete === this.queue.length) {
+                        this.resolve();
+                    } else {
+                        this.frameRequest = requestAnimationFrame(this.update);
+                        this.frame++;
+                    }
+                }
+            }
+
+            // Initialize text scramble on name and headers
+            const nameEl = document.querySelector('.name');
+            const headerEls = document.querySelectorAll('.dropdown-container h1');
+            const nameScramble = new TextScramble(nameEl);
+            const headerScrambles = Array.from(headerEls).map(el => new TextScramble(el));
+
+            nameEl.addEventListener('click', () => {
+                nameScramble.setText('VIPUL BHARDWAJ');
+            });
+
+            nameEl.addEventListener('mouseover', () => {
+                nameScramble.setText('VIPUL BHARDWAJ');
+            });
+
+            headerEls.forEach((header, index) => {
+                header.addEventListener('click', (e) => {
+                    const originalText = header.innerText;
+                    headerScrambles[index].setText(originalText);
+                });
+                header.addEventListener('mouseover', (e) => {
+                    const originalText = header.innerText;
+                    headerScrambles[index].setText(originalText);
+                });
+            });
+
+            //////////////////////////////////////////////////////////
+            // ANIMATED SCROLL PATH & ACTIVE DOTS
+            //////////////////////////////////////////////////////////
+            // Create observers for timeline sections
+            const timelineItems = document.querySelectorAll('.timeline ul li');
+            const points = document.querySelectorAll('.point');
+            const dropdownContainers = document.querySelectorAll('.dropdown-container');
+            const verticalLines = document.querySelectorAll('.vl');
+
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Find corresponding point and expand it
+                        const index = Array.from(timelineItems).indexOf(entry.target);
+                        if (points[index]) {
+                            points[index].classList.add('active');
+                        }
+                        // Add glow effect to container
+                        const container = entry.target.closest('.dropdown-container');
+                        if (container && !container.classList.contains('section-in-view')) {
+                            container.classList.add('section-in-view');
+                        }
+                    } else {
+                        const index = Array.from(timelineItems).indexOf(entry.target);
+                        if (points[index]) {
+                            points[index].classList.remove('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all timeline items
+            timelineItems.forEach(item => observer.observe(item));
+
+            // Animate vertical lines on scroll
+            const lineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        entry.target.classList.add('vl-glow');
+                        // Remove glow after animation
+                        setTimeout(() => {
+                            entry.target.classList.remove('vl-glow');
+                        }, 1200);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px 200px 0px' });
+
+            verticalLines.forEach(line => lineObserver.observe(line));
+
+            // Observe dropdown containers for glow effect
+            dropdownContainers.forEach(container => {
+                const observerGlow = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                        } else {
+                            entry.target.classList.remove('in-view');
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observerGlow.observe(container);
+            });
         }, 5000);
     </script>
     <body>
