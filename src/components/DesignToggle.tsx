@@ -1,23 +1,21 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function DesignToggle() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const [isLegacy, setIsLegacy] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const design = searchParams.get("design");
-    setIsLegacy(design === "legacy");
-  }, [searchParams]);
+    const savedDesign = localStorage.getItem("portfolio-design");
+    setIsLegacy(savedDesign === "legacy");
+  }, []);
 
   const toggleDesign = () => {
     const newDesign = isLegacy ? "current" : "legacy";
-    router.push(`/?design=${newDesign}`);
+    localStorage.setItem("portfolio-design", newDesign);
+    window.location.reload();
   };
 
   if (!mounted) return null;
