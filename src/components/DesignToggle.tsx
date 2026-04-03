@@ -10,12 +10,24 @@ export default function DesignToggle() {
     setMounted(true);
     const savedDesign = localStorage.getItem("portfolio-design");
     setIsLegacy(savedDesign === "legacy");
+
+    // Listen for storage changes (for syncing across tabs)
+    const handleStorageChange = () => {
+      const newDesign = localStorage.getItem("portfolio-design");
+      setIsLegacy(newDesign === "legacy");
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const toggleDesign = () => {
     const newDesign = isLegacy ? "current" : "legacy";
     localStorage.setItem("portfolio-design", newDesign);
-    window.location.reload();
+    setIsLegacy(newDesign === "legacy");
+    
+    // Dispatch custom event so page knows to re-render
+    window.dispatchEvent(new Event("portfolio-design-changed"));
   };
 
   if (!mounted) return null;

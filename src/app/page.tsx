@@ -8,6 +8,7 @@ import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
 import Contact from "@/components/Contact";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import LegacyDesignContent from "@/components/LegacyDesignContent";
 
 function CurrentDesign() {
   return (
@@ -29,21 +30,7 @@ function CurrentDesign() {
   );
 }
 
-function LegacyDesign() {
-  return (
-    <iframe
-      src="/_legacy.html"
-      style={{
-        width: "100%",
-        height: "100vh",
-        border: "none",
-        margin: 0,
-        padding: 0,
-      }}
-      title="Legacy Design"
-    />
-  );
-}
+
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -54,6 +41,15 @@ export default function Home() {
     // Check localStorage for design preference
     const savedDesign = localStorage.getItem("portfolio-design");
     setIsLegacy(savedDesign === "legacy");
+
+    // Listen for design changes from DesignToggle
+    const handleDesignChange = () => {
+      const newDesign = localStorage.getItem("portfolio-design");
+      setIsLegacy(newDesign === "legacy");
+    };
+
+    window.addEventListener("portfolio-design-changed", handleDesignChange);
+    return () => window.removeEventListener("portfolio-design-changed", handleDesignChange);
   }, []);
 
   // Show current design while hydrating to prevent mismatch
@@ -61,5 +57,14 @@ export default function Home() {
     return <CurrentDesign />;
   }
 
-  return isLegacy ? <LegacyDesign /> : <CurrentDesign />;
+  return (
+    <motion.div
+      key={isLegacy ? "legacy" : "current"}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      {isLegacy ? <LegacyDesignContent /> : <CurrentDesign />}
+    </motion.div>
+  );
 }
