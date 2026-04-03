@@ -1,0 +1,350 @@
+/* Legacy Design Styles - Isolated from Tailwind */
+
+.legacy-design {
+  all: revert;
+  font-family: 'Fjalla One', sans-serif;
+  background: #0b0d1b;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.legacy-design * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.legacy-design html {
+  scroll-behavior: smooth;
+}
+
+.legacy-design .intro {
+  margin-top: 20vh;
+  border-radius: 10px;
+  display: flex;
+  background-image: url('/into-bg.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 20vh;
+  padding: 40px;
+}
+
+.legacy-design .intro-text {
+  text-align: center;
+}
+
+.legacy-design .enlarge {
+  font-size: 3rem;
+}
+
+.legacy-design .name {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.legacy-design .myImg {
+  --s: 15px;
+  --b: 2px;
+  --w: 300px;
+  --c: #b160a6;
+  
+  width: var(--w);
+  height: var(--w);
+  aspect-ratio: 1;
+  object-fit: cover;
+  padding: calc(2*var(--s));
+  --_g: var(--c) var(--b), #0000 0 calc(100% - var(--b)), var(--c) 0;
+  background:
+    linear-gradient(var(--_g)) 50% / 100% var(--_i, 100%) no-repeat,
+    linear-gradient(90deg, var(--_g)) 50% / var(--_i, 100%) 100% no-repeat;
+  outline-offset: calc(var(--w) / -2 - 2 * var(--s));
+  transition: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.legacy-design .myImg:hover {
+  outline: var(--b) solid var(--c);
+  outline-offset: calc(var(--s) / -2);
+}
+
+.legacy-design .dropdown-container {
+  margin-bottom: 20px;
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(11, 13, 27, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.legacy-design .dropdown-container header {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: rgba(168, 85, 247, 0.05);
+}
+
+.legacy-design .dropdown-container header:hover {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.legacy-design .dropdown-container h1 {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.legacy-design .dropdown-container .expand {
+  color: #ec4899;
+  font-size: 2rem;
+  margin: 0;
+  transition: transform 0.3s;
+}
+
+.legacy-design .dropdown-container.open .expand {
+  transform: rotate(45deg);
+}
+
+.legacy-design .dropdown-container article {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.legacy-design .dropdown-container.open article {
+  max-height: 2000px;
+}
+
+.legacy-design .article-inner {
+  padding: 24px;
+  color: #d1d5db;
+  line-height: 1.8;
+}
+
+.legacy-design .projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.legacy-design .project-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+}
+
+.legacy-design .project-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border-color: rgba(168, 85, 247, 0.5);
+  transform: translateY(-5px);
+}
+
+.legacy-design .project-card h4 {
+  font-size: 1.3rem;
+  color: white;
+  margin: 0;
+}
+
+.legacy-design .project-card p {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin: 12px 0 0 0;
+}
+
+.legacy-design .project-card .technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.legacy-design .project-card .tech-tag {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  background: rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  border-radius: 4px;
+  border: 1px solid rgba(168, 85, 247, 0.5);
+}
+
+.legacy-design .timeline {
+  padding: 0;
+}
+
+.legacy-design .timeline ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legacy-design .timeline li {
+  border-left: 4px solid #a855f7;
+  padding-left: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0 4px 4px 0;
+}
+
+.legacy-design .timeline li h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin: 0 0 8px 0;
+}
+
+.legacy-design .timeline li p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  margin: 8px 0;
+}
+
+.legacy-design .timeline li .date {
+  color: #a78bfa;
+  font-size: 0.85rem;
+}
+
+.legacy-design .links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.legacy-design .links-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+}
+
+.legacy-design .links-container:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+
+.legacy-design .links-container .link-icon {
+  font-size: 1.5rem;
+}
+
+.legacy-design .links-container a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.legacy-design .links-container:hover a {
+  color: #a78bfa;
+}
+
+/* Modal Styles */
+.legacy-design .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+}
+
+.legacy-design .modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legacy-design .modal-content {
+  background: #0b0d1b;
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: white;
+}
+
+.legacy-design .modal-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.legacy-design .modal-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.legacy-design .modal .close {
+  color: #9ca3af;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.legacy-design .modal .close:hover {
+  color: #ec4899;
+}
+
+.legacy-design .modal-body {
+  padding: 24px;
+  color: #d1d5db;
+  line-height: 1.8;
+}
+
+.legacy-design .modal-body p {
+  margin: 12px 0;
+}
+
+.legacy-design .modal-body a {
+  color: #a78bfa;
+  text-decoration: none;
+}
+
+.legacy-design .modal-body a:hover {
+  text-decoration: underline;
+}
+
+.legacy-design .projImg {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.legacy-design .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

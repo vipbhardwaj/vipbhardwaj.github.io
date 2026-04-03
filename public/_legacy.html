@@ -4,35 +4,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet"> 
-        <title>Vipul Bhardwaj - Legacy</title>
-        <link rel="stylesheet" type="text/css" href="/prac.css">
+        <title>Vipul Bhardwaj</title>
+        <link rel="stylesheet" type="text/css" href="prac.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="/vanilla-tilt.js"></script>
-        <style>
-            /* Design Toggle Styles */
-            .design-toggle {
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                z-index: 50;
-                padding: 0.5rem 1rem;
-                border-radius: 0.5rem;
-                background: linear-gradient(135deg, #a855f7, #ec4899);
-                color: white;
-                font-weight: 600;
-                font-size: 0.875rem;
-                border: none;
-                cursor: pointer;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            }
-
-            .design-toggle:hover {
-                transform: scale(1.05);
-                box-shadow: 0 15px 35px -5px rgba(236, 72, 153, 0.5);
-            }
-        </style>
     </head>
     <script>
         window.setTimeout(function() {
@@ -61,6 +35,7 @@
 
             // Open
             function openModal() {
+                // console.log(this.id);
                 if(this.id == 'fic-button') {ficModal.style.display = 'block';}
                 else if(this.id == 'skinmart-button') {skinmartModal.style.display = 'block';}
                 else if(this.id == 'cstl-button') {cstlModal.style.display = 'block';}
@@ -113,152 +88,9 @@
                     }
                 }
             }
-
-            //////////////////////////////////////////////////////////
-            // TEXT SCRAMBLE EFFECT
-            //////////////////////////////////////////////////////////
-            class TextScramble {
-                constructor(el) {
-                    this.el = el;
-                    this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                    this.update = this.update.bind(this);
-                }
-                setText(newText) {
-                    const oldText = this.el.innerText;
-                    const length = Math.max(oldText.length, newText.length);
-                    const promise = new Promise((resolve) => this.resolve = resolve);
-                    this.queue = [];
-                    for (let i = 0; i < length; i++) {
-                        const from = oldText[i] || '';
-                        const to = newText[i] || '';
-                        const start = Math.floor(Math.random() * 40);
-                        const end = start + Math.floor(Math.random() * 40);
-                        this.queue.push({ from, to, start, end, char: '' });
-                    }
-                    cancelAnimationFrame(this.frameRequest);
-                    this.frame = 0;
-                    this.update();
-                    return promise;
-                }
-                update() {
-                    let output = '', complete = 0;
-                    for (let i = 0, n = this.queue.length; i < n; i++) {
-                        let { from, to, start, end, char } = this.queue[i];
-                        if (this.frame >= end) {
-                            complete++;
-                            output += to;
-                        } else if (this.frame >= start) {
-                            if (!char || Math.random() < 0.28) {
-                                char = this.chars[Math.floor(Math.random() * this.chars.length)];
-                                this.queue[i].char = char;
-                            }
-                            output += char;
-                        } else {
-                            output += from;
-                        }
-                    }
-                    this.el.innerText = output;
-                    if (complete === this.queue.length) {
-                        this.resolve();
-                    } else {
-                        this.frameRequest = requestAnimationFrame(this.update);
-                        this.frame++;
-                    }
-                }
-            }
-
-            // Initialize text scramble on name and headers
-            const nameEl = document.querySelector('.name');
-            const headerEls = document.querySelectorAll('.dropdown-container h1');
-            const nameScramble = new TextScramble(nameEl);
-            const headerScrambles = Array.from(headerEls).map(el => new TextScramble(el));
-
-            nameEl.addEventListener('click', () => {
-                nameScramble.setText('VIPUL BHARDWAJ');
-            });
-
-            nameEl.addEventListener('mouseover', () => {
-                nameScramble.setText('VIPUL BHARDWAJ');
-            });
-
-            headerEls.forEach((header, index) => {
-                header.addEventListener('click', (e) => {
-                    const originalText = header.innerText;
-                    headerScrambles[index].setText(originalText);
-                });
-                header.addEventListener('mouseover', (e) => {
-                    const originalText = header.innerText;
-                    headerScrambles[index].setText(originalText);
-                });
-            });
-
-            //////////////////////////////////////////////////////////
-            // ANIMATED SCROLL PATH & ACTIVE DOTS
-            //////////////////////////////////////////////////////////
-            const timelineItems = document.querySelectorAll('.timeline ul li');
-            const points = document.querySelectorAll('.point');
-            const dropdownContainers = document.querySelectorAll('.dropdown-container');
-            const verticalLines = document.querySelectorAll('.vl');
-
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const index = Array.from(timelineItems).indexOf(entry.target);
-                        if (points[index]) {
-                            points[index].classList.add('active');
-                        }
-                        const container = entry.target.closest('.dropdown-container');
-                        if (container && !container.classList.contains('section-in-view')) {
-                            container.classList.add('section-in-view');
-                        }
-                    } else {
-                        const index = Array.from(timelineItems).indexOf(entry.target);
-                        if (points[index]) {
-                            points[index].classList.remove('active');
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            timelineItems.forEach(item => observer.observe(item));
-
-            const lineObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                        entry.target.classList.add('vl-glow');
-                        setTimeout(() => {
-                            entry.target.classList.remove('vl-glow');
-                        }, 1200);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px 200px 0px' });
-
-            verticalLines.forEach(line => lineObserver.observe(line));
-
-            dropdownContainers.forEach(container => {
-                const observerGlow = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('in-view');
-                        } else {
-                            entry.target.classList.remove('in-view');
-                        }
-                    });
-                }, { threshold: 0.3 });
-                observerGlow.observe(container);
-            });
-        }, 1000);
+        }, 5000);
     </script>
     <body>
-        <button class="design-toggle" onclick="window.location.href='/?design=current'" title="Switch to Current Design">
-            🎨 Current Design
-        </button>
         <div class='beforeLoad'>
             <div class="dots">
                 <div class="dot"></div>
@@ -288,11 +120,31 @@
             <div class="wrapper"><div class="about">
                 <div class="dropdown-container">
                     <header class="clearfix">
-                        <h1>PROJECTS</h1>
+                        <h1>Projects</h1>
                         <figure class="expand">+</figure>
                     </header>
                     <article>
                         <div class="article-inner projects">
+
+                            <!-- cbRAT -->
+                            <div data-tilt class="project-card">
+                                <button id="fic-button" class="project-card-inner">
+                                    <h4>cbRAT</h4>
+                                </button>
+                            </div>
+                            <div id="fic-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>cbRAT (REST-API Unit Test Automation Tool</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>A Command Line tool created solely in GoLang created for the sake of Automated Unit Tests Files and Modules generation, in Python, using template Python code. Which is filled based on the flag values provided in command, which is once executed and analysed by the CLI interface which is created in the CLI-creation library called COBRA in Go-Lang.<a href="https://app.ficsggscc.com/">Website link</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- FIC-SGGSCC -->
                             <div data-tilt class="project-card">
                                 <button id="fic-button" class="project-card-inner">
                                     <h4>FIC-SGGSCC</h4>
@@ -305,10 +157,15 @@
                                         <h2>FIC - SGGSCC</h2>
                                     </div>
                                     <div class="modal-body">
-                                        <p>A website undertaken as a project. Technologies used were ReactJS, Bootstrap, and Node/Express backend with MongoDB. <a href="https://app.ficsggscc.com/">Website link</a></p>
+                                        <p>A website undertaken as a project given to me and my friend by Finance and Investment Cell (<a href="https://ficsggscc.com/">FIC</a>) of Sri Guru Gobind Singh College of Commerce (<a href="https://www.sggscc.ac.in/">SGGSCC</a>) (under Delhi University). This website is related to a fest that they had taken, fest involved online trading events and investment events.<br/>Technologies used for this website were ReactJS, Bootstrap, Icon Libraries for Frontend and<br/> PHP, Express, Node for backend. MongoDB was primarily used for database.<a href="https://app.ficsggscc.com/">Website link</a></p>
+                                        <img class="projImg" src="images/projects/fic1.png"/>
+                                        <img class="projImg" src="images/projects/fic2.jpeg"/>
+                                        <img class="projImg" src="images/projects/fic3.jpeg"/>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Skin Mart -->
                             <div data-tilt class="project-card">
                                 <button id="skinmart-button" class="project-card-inner">
                                     <h4>Skin Mart</h4>
@@ -321,7 +178,47 @@
                                         <h2>Skin Mart</h2>
                                     </div>
                                     <div class="modal-body">
-                                        <p>A website where one can check Steam inventory and fetch item prices. <a href="https://skin-mart.vercel.app/">Website link</a></p>
+                                        <p>A website where one can check out other players' Steam Inventory (including wide range of games), and fetch the prices of the items they own. <a href="https://skin-mart.vercel.app/">Website link</a></p>
+                                        <img class="projImg" src="images/projects/skinmart1.png" alt="Landing Page"/>
+                                        <img class="projImg" src="images/projects/skinmart2.png" alt="Inventory"/>
+                                        <img class="projImg" src="images/projects/skinmart3.png" alt="Info"/>
+                                        <img class="projImg" src="images/projects/skinmart4.png" alt="Game Info"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- C-STL -->
+                            <div data-tilt class="project-card">
+                                <button id="cstl-button" class="project-card-inner">
+                                    <h4>C-STL</h4>
+                                </button>
+                            </div>
+                            <div id="cstl-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>C - STL</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This is supposed to be a Standard Template Library for C language, containing Data Structures (like Queues, Lists, Sets etc) and Algorithms (like Sorting, String Matching etc). <a href="https://github.com/hkhashoo/c_algo_ds_lib">GitHub</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- organiz-er -->
+                            <div data-tilt class="project-card">
+                                <button id="organizer-button" class="project-card-inner">
+                                    <h4>organiz-er</h4>
+                                </button>
+                            </div>
+                            <div id="organizer-modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2>Organiz-er</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Time Management website, keeps track of ToDos, Productive hours and helps be productive with others. [Not hosted yet]</p>
                                     </div>
                                 </div>
                             </div>
@@ -330,18 +227,29 @@
                 </div>
                 <div class="dropdown-container">
                     <header class="clearfix">
-                        <h1>ABOUT</h1>
+                        <h1>Up To Speed</h1>
                         <figure class="expand">+</figure>
                     </header>
                     <article>
                         <div class="article-inner">
-                            <p>Full Stack Developer with expertise in Frontend technologies and competitive programming. Currently working as a Software Developer.</p>
+                            <p>I was born in the August of 2000, and brought up, in Ludhiana District of Punjab, India. I lived with my family uptil Secondary Education and then moved out. I dropped a year to prepare better for JEE. I got into a college in Bengaluru, Karnataka, India. There I am doing my major (as of Jan 2022, while making this) in Computer Science and Engineering.</p>
                         </div>
                     </article>
                 </div>
                 <div class="dropdown-container">
                     <header class="clearfix">
-                        <h1>EXPERIENCE</h1>
+                        <h1>Hobbies</h1>
+                        <figure class="expand">+</figure>
+                    </header>
+                    <article>
+                        <div class="article-inner">
+                            <p>I like gaming, some of my favourite games are, CSGO (in the FPS genre) and NFS MW and 2015 (in the racing genre). Apart from that I like Atheletics and often used to participate in the annual sports meet held in High School. I had an interest for Automobiles but couldn't pursue that further. Once started, Programming and Problem solving caught my attention, along with Competitive Coding and Web Development. I have recently been developng an interest for ML but let's see where that takes me.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="dropdown-container">
+                    <header class="clearfix">
+                        <h1>Education / Experience</h1>
                         <figure class="expand">+</figure>
                     </header>
                     <article>
@@ -350,8 +258,8 @@
                                 <ul>
                                     <li>
                                         <div class="content">
-                                            <h3>Software Developer 2 @ Couchbase</h3>
-                                            <p>Working in a senior capacity on mobile platform peer-to-peer architecture.</p>
+                                            <h3>Couchbase Software Developer 2</h3>
+                                            <p>Working in a senior Capacity in the CBL (Couchbase Lite) and SGW (Sync Gateway). Working on the releases related to the Peer-to-Peer architecture of the Mobile platform for couchbase.</p>
                                         </div>
                                         <div class="point"></div>
                                         <div class="date">
@@ -360,12 +268,52 @@
                                     </li>
                                     <li>
                                         <div class="content">
-                                            <h3>Software Developer 1 @ Couchbase</h3>
-                                            <p>Worked on Capella APIs and cloud platform development.</p>
+                                            <h3>Couchbase Software Developer 1</h3>
+                                            <p>Worked on Developing the APIs related to Capella (a product that offers the capabilities of the Couchbase Database on Cloud, supporting AWS, GCP and Azure cloud platforms for hosting/provisioning). Worked on the Management v4 Public APIs that are being released in a CI/CD fasion.</p>
                                         </div>
                                         <div class="point"></div>
                                         <div class="date">
                                             <h4>July 2023 - February 2025</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Couchbase Internship</h3>
+                                            <p>6 month intern, hired during 3rd year of B-tech CS degree. Worked as a developer in the in-house tool development team intern, where the tools being developed were used by the overall coucbase developers in the conmpany, using CEAN stack (Couchbase [as the Database] - ExpressJS - Angular - NodeJs)</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>January - July 2023</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Zscaler Internship</h3>
+                                            <p>2 month summer intern, hired during 3rd year of B-tech CS degree. Worked as a frontend developer, using ReactJS primarily. Explored Linters, ESLint primarily</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>June - Aug 2022</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Inter</h3>
+                                            <p>Completed my Intermediate education / Senior High School / Secondary Education with a percentage of 87</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>April 2018</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="content">
+                                            <h3>Merit</h3>
+                                            <p>Completed my education uptil 10th grade with a score of 10 GPA</p>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="date">
+                                            <h4>March 2016</h4>
                                         </div>
                                     </li>
                                 </ul>
@@ -375,15 +323,47 @@
                 </div>
             </div></div>
             <div class="vl"></div>
+            <form class="mordernForm" method="post" name="Form">
+                <hr/>
+                <label for="the-name">How should I recognize you?</label>
+                <input type="text" id="the-name" class="gradient-text">
+                <label for="curiosity">Why so curious?</label>
+                <input placeholder="Example : Nice Website / Crap Website" type="text" id="curiosity" class="gradient-text" list="autoComp">
+                <datalist id="autoComp">
+                    <option value="Want to know more about You."></option>
+                    <option value="Nice Website.."></option>
+                    <option value="Lets be friends! :)"></option>
+                    <option value="Want to learn Web Dev from you."></option>
+                    <option value="Want to buy you a coffee..!"></option>
+                    <option value="Let's catch up! We used to hang out."></option>
+                </datalist>
+                <label for="meter">On a scale of 1-100, how much do you like the portfolio</label>
+                <input type="range" id="meter" min="0" max="100">
+                <input type="image" class="submit" src="./dm.png" onclick="send()"/>
+                <hr/>
+            </form>
+            <div class="vl"></div>
             <div class="wrapper"><div class="get-in-touch">
+                <img class="get-in-touch-img" src="./social-media.png" alt="Social Media"/>
                 <p class="get-in-touch-message gradient-text">Get in Touch</p>
                 <div class="links">
-                    <div class="links-container"><a class="gradient-text" href="https://www.linkedin.com/in/vipul-bhardwaj-051b82184/">LinkedIn</a></div>
-                    <div class="links-container"><a class="gradient-text" href="https://www.instagram.com/__vipul23__/">Instagram</a></div>
-                    <div class="links-container"><p style="display: inline" class="gradient-text">+917986237204</p></div>
+                    <div class="links-container"><img class="link-img" src="./instagram.png" alt="Instagram"/> <a class="gradient-text" href="https://www.instagram.com/__vipul23__/">https://www.instagram.com/__vipul23__/</a></div>
+                    <div class="links-container"><img class="link-img" src="./whatsapp.png" alt="Whatsapp"/><p style="display: inline" class="gradient-text"> +917986237204</p></div>
+                    <div class="links-container"><img class="link-img" src="./linkedin.png" alt="LinkedIn"/> <a class="gradient-text" href="https://www.linkedin.com/in/vipul-bhardwaj-051b82184/">https://www.linkedin.com/in/vipul-bhardwaj-051b82184/</a></div>
+                    <div class="links-container"><img class="link-img" src="./email.png" alt="Email"/> <p style="display: inline" class="gradient-text">vipulbhardwaj1011@gmail.com</p></div>
+                    <div class="links-container"><img class="link-img" src="./github.png" alt="GitHub"/> <a class="gradient-text" href="https://github.com/vipbhardwaj">https://github.com/vipbhardwaj</a></div>
                 </div>
             </div></div>
             <div class="vl"></div>
+            <img class="line-img-end" src="./into-bg.webp"/>
         </div>
+        <script type="text/javascript" src="./vanilla-tilt.js"></script>
+        <script type="text/javascript">
+            VanillaTilt.init(document.querySelector('.project-card'), {
+                max: 25,
+                speed: 400,
+            })
+            VanillaTilt.init(document.querySelectorAll('.project-card'));
+        </script>
     </body>
 </html>

@@ -53,40 +53,68 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="text-center z-10 px-4 max-w-4xl"
+        className="flex items-center justify-center z-10 px-4 max-w-6xl gap-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Main title with scramble effect */}
-        <motion.div
-          variants={itemVariants}
-          className="cursor-pointer mb-8"
-        >
-          <h1 className="text-6xl md:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-magenta via-pink to-purple-500 hover:from-purple-500 hover:via-magenta hover:to-pink transition-all duration-300">
-            <TextScramble text="VIPUL BHARDWAJ" delay={0} />
-          </h1>
+        {/* Left side - Text content */}
+        <motion.div className="text-center md:text-left flex-1">
+          {/* Main title with scramble effect */}
+          <motion.div
+            variants={itemVariants}
+            className="cursor-pointer mb-8"
+          >
+            <h1 className="text-6xl md:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-magenta via-pink to-purple-500 hover:from-purple-500 hover:via-magenta hover:to-pink transition-all duration-300">
+              <TextScramble text="VIPUL BHARDWAJ" delay={0} />
+            </h1>
+          </motion.div>
+
+          {/* Subtitle */}
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h2 className="text-2xl md:text-4xl font-light text-gray-300">
+              Full Stack Developer & Competitive Coder
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl leading-relaxed">
+              Full Stack • Cloud Infrastructure • Go • Python • AWS
+            </p>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-16"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className="w-3 h-12 mx-auto md:mx-0 bg-gradient-to-b from-magenta to-transparent rounded-full" />
+            <p className="text-sm text-gray-400 mt-2">Scroll to explore</p>
+          </motion.div>
         </motion.div>
 
-        {/* Subtitle */}
-        <motion.div variants={itemVariants} className="space-y-4">
-          <h2 className="text-2xl md:text-4xl font-light text-gray-300">
-            Full Stack Developer & Competitive Coder
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Building beautiful, performant web experiences with modern technologies
-          </p>
-        </motion.div>
-
-        {/* Scroll indicator */}
+        {/* Right side - Profile image */}
         <motion.div
           variants={itemVariants}
-          className="mt-16"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="hidden md:flex flex-1 justify-center"
         >
-          <div className="w-3 h-12 mx-auto bg-gradient-to-b from-magenta to-transparent rounded-full" />
-          <p className="text-sm text-gray-400 mt-2">Scroll to explore</p>
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative"
+          >
+            <div className="w-80 h-80 rounded-lg overflow-hidden border-2 border-magenta/50 shadow-2xl shadow-magenta/20">
+              <img
+                src="/myImg1.jpeg"
+                alt="Vipul Bhardwaj"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Decorative corner accents */}
+            <div className="absolute -top-2 -left-2 w-16 h-16 border-t-2 border-l-2 border-magenta" />
+            <div className="absolute -bottom-2 -right-2 w-16 h-16 border-b-2 border-r-2 border-pink" />
+          </motion.div>
         </motion.div>
       </motion.div>
 
