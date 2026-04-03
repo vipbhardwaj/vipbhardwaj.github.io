@@ -78,18 +78,6 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* CTA Button */}
-        <motion.div variants={itemVariants} className="mt-12">
-          <motion.a
-            href="#projects"
-            className="glass-card inline-block px-8 py-4 text-lg font-semibold hover:border-magenta"
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(230, 126, 255, 0.6)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Explore My Work
-          </motion.a>
-        </motion.div>
-
         {/* Scroll indicator */}
         <motion.div
           variants={itemVariants}
@@ -97,14 +85,14 @@ export default function Hero() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-1 h-12 mx-auto bg-gradient-to-b from-magenta to-transparent rounded-full" />
+          <div className="w-3 h-12 mx-auto bg-gradient-to-b from-magenta to-transparent rounded-full" />
           <p className="text-sm text-gray-400 mt-2">Scroll to explore</p>
         </motion.div>
       </motion.div>
 
       {/* Floating particles effect */}
       <div className="absolute inset-0 -z-5 overflow-hidden">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-magenta/50 rounded-full"
